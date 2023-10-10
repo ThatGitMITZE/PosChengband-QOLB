@@ -1,0 +1,1690 @@
+# Do not modify this file unless you know exactly what you are doing,
+# unless you wish to risk possible system crashes and broken savefiles.
+
+# === Understanding r_info.txt ===
+
+# XXX syntax under construction ... the following is probably out of date XXX
+
+# N: unique internal name (id) : display name
+# G: symbol : color
+# I: speed : hit points : vision : armor class : alertness : weight (lbs)
+# W: depth[ to max_depth]:rarity:exp[:EVOLVE(<id>, <exp>)]
+# W: where(depth[ to max_depth]):rarity:exp[:EVOLVE(<id>, <exp>)]
+# B: {mon_blow}
+# S: spell frequency |
+# S: spell type | spell type | etc
+# F: flag | flag | etc
+# D: Description
+
+# Possessor Extra Information (Optional)
+#  The token after P: is a literal an must match case
+#  The Copy option, if used, should be specified first.
+#   Subsequent options increment this 'baseline', except for Life
+#   which is applied multiplicatively.
+#  As always, case matters for string lookups (RaceName, ClassName, BodyName).
+#  Body types are defined in b_info.txt. If you don't specify one, you get the
+#   standard humanoid body type as a default.
+# P:Copy:<id> | P:Copy:<RaceName>:<ClassName>
+# P:Stats:<Str>:<Int>:<Wis>:<Dex>:<Con>:<Chr>
+# P:Skills:<Dis>:<Dev>:<Sav>:<Stl>:<Srh>:<Fos>:<Thn>:<Thb>
+# P:ExtraSkills:<Dis>:<Dev>:<Sav>:<Stl>:<Srh>:<Fos>:<Thn>:<Thb>
+# P:Life:<Life>
+# P:Body:<BodyName>
+# P:SpellStat:<Str|Int|Wis|Dex|Con|Chr>
+# P:Speed:+12
+
+# 'N' indicates the beginning of an entry. NOTE: The id is no longer
+# a 'serial number' but is instead a short string that should be easily
+# remembered. This allows reordering of this file, partitioning into
+# themed sub-files as well as more readable code and pref files:
+# eg '728' vs 'D.storm'. We no longer waste memory on "holes" in the
+# id sequence range. Changing the id will break savefiles and might
+# also break lookups in EVOLVE directives, quest files and code.
+
+# 'G' is for graphics - symbol and color. There are 16 colors, as
+# follows:
+
+# D - Black    w - White     s - Gray     o - Orange
+# r - Red     g - Green     b - Blue     u - Brown
+# d - Dark Gray  W - Light Gray   v - Violet    y - Yellow
+# R - Light Red  G - Light Green  B - Light Blue  U - Light Brown
+
+# 'I' is for information - speed, health, vision in tens of feet,
+# armor class, and alertness. 110 is normal speed. Alertness ranges
+# from 0 (ever vigilant for intruders) to 255 (prefers to ignore
+# intruders).
+
+# 'W' is for more information - level, rarity, and experience for
+# killing. The third slot is unused.
+
+# 'B' is for blows
+# You can have as many blows as you like and each blow can have
+# multiple effects. The first effect is usually plain old damage
+# while subsequent effects do things like confuse and stun the
+# player. Browse some of the deeper monsters for ideas and to
+# learn the syntax.
+# Each blow can have multiple attacks per round. For example,
+# HIT(x3) will give the monster 3 attacks per round with this
+# particular blow. This simplifies lore for identical attacks
+# and also avoids duplication here.
+
+# 'S' is for spells. The first S: line should be S:1_IN_X with X the
+# number of monster turns, on average, before the monster will cast
+# one of its spells. X must not be zero.
+# Alt: Use S:FREQ_NN to specify the spell frequency directly.
+# Note: You can now give explicit damage amounts for spells.
+
+# 'F' is for flags. These are fairly self-explanatory. As many F:
+# lines may be used as are needed to specify all the flags and flags
+# are separated by the '|' symbol.
+
+# 'D' is for description. As many D: lines may be used as are needed
+# to describe the monster. The parser will insert spaces as needed
+# when joining lines.
+
+# 'P' is for posessor information. Generally this should lead with a
+# "copy directive" as in P:Copy:Human:Warrior to establish a baseline
+# for stats and skills. This also determines the spell stat, if any.
+
+# Standard Monster Set
+%:r_dragon.txt
+%:r_orc.txt
+%:r_troll.txt
+%:r_angel.txt
+%:r_demon.txt
+%:r_hound.txt
+%:r_horse.txt
+%:r_giant.txt
+%:r_icky.txt
+%:r_spider.txt
+%:r_undead.txt
+%:r_human.txt
+%:r_eye.txt
+%:r_elemental.txt
+%:r_reptile.txt
+%:r_bird.txt
+%:r_insect.txt
+%:r_fish.txt
+%:r_golem.txt
+%:r_mimic.txt
+
+# Extra Monsters for Specific Dungeons/Worlds
+# (XXX In progress, but I'd like extras to be optionally available ...
+#      The issue is when and how to load them. It can't be in init_angband, 
+#      since we don't yet know which world we are playing ... cf mon_race_init)
+%:r_amber.txt
+%:r_camelot.txt
+%:r_olympus.txt
+%:r_stronghold.txt
+
+########################################################################
+# Player Forms ... DEPRECATED means these cannot be allocated.
+
+#Player: Used for graphics and player self illusions
+N:@.player:Player
+I:DISPLAY(@):HP(1):MOVE(FLY):ATTR(DEPRECATED)
+B:HIT:HURT(1)
+
+#Possessor w/o a corpse to animate
+N:@.soul:Soul
+I:DISPLAY(G,Light Blue):HP(1):MOVE(PASSWALL|FLY):POS(TELEPATHY)
+I:CAN(INVIS):ATTR(COLD_BLOOD|DEPRECATED)
+P:Stat:Str(-4):Int(0):Wis(0):Dex(2):Con(-2):Chr(1)
+P:Skill:Dis(25+50):Dev(40+60):Sav(40+75):Stl(10):Srh(20):Fos(20):Thn(20+40):Thb(30+50)
+P:Life:80
+P:Infra:50'
+P:Body:Possessor Soul
+P:Weight:40
+
+#Mimic w/o a form to copy (cf possessor_caster_info for explanation of SpellStat)
+N:@.mimic:Mimic
+I:DISPLAY(@):HP(1):MOVE(SWIM):ATTR(DEPRECATED)
+P:Stat:Str(0):Int(1):Wis(-1):Dex(2):Con(0):Chr(-1)
+P:Skill:Dis(25+35):Dev(30+50):Sav(36+50):Stl(2):Srh(18):Fos(16):Thn(60+90):Thb(50+100)
+P:Life:108
+P:SpellStat:Dex
+
+# Staffmaster's Monkey Clone
+N:@.clone:p.base:Monkey Clone
+I:DISPLAY(H,Light Red):HP(600):AC(80):ATTR(DEPRECATED)
+B:HIT:HURT(1)
+D:He looks just like you!
+
+########################################################################
+# Kobolds
+N:k.kobold:Kobold
+I:LVL(3,30):RARITY(1):WILD(WASTE|WOOD|GRASS)
+I:HP(5d5):AC(16):EXP(5):EVOLVE(k.large, 14)
+I:ALIGN(Evil):ATTR(MALE)
+I:ALERT(Fairly Observant):MOVE(OPEN|BASH)
+B:HIT(x2):HURT(1d7)
+I:RESIST(POIS)
+O:60%:DROP_WARRIOR
+D:It is a small, dog-headed humanoid.
+I:DISPLAY(k,Green):POS(CORPSE|SKELETON)
+P:Copy:Kobold:Warrior
+P:Stats:-2:0:0:-1:-1:0
+P:Life:70
+P:Weight:120
+
+N:k.small:k.kobold:Small kobold
+I:LVL(1,30):RARITY(1)
+I:HP(2d7):AC(16):EXP(10):EVOLVE(k.kobold, 8)
+B:HIT:HURT(1d9)
+O:60%:DROP_WARRIOR
+D:It is a squat and ugly humanoid figure.
+I:COLOR(Light Green)
+P:Stats:-2:0:0:-1:-1:0
+P:Weight:70
+
+N:k.large:k.kobold:Large kobold
+I:LVL(5,40):RARITY(1)
+I:HP(13d9):AC(32):EXP(25)
+I:ALERT(Fairly Unseeing)
+B:HIT:HURT(1d7+3)
+O:90%:DROP_WARRIOR
+D:It a man-sized figure with the all too recognizable face of a kobold.
+I:COLOR(White)
+P:Copy:Kobold:Warrior
+P:Life:95
+P:Weight:150
+
+N:k.Mughash:k.large:Mughash the Kobold Lord
+I:LVL(7):RARITY(3):ALLOC(UNIQUE|ESCORT)
+I:HP(150):AC(20):EXP(100)
+I:CAN(SPEAK)
+B:HIT(x4):HURT(1d8+2)
+O:1d2:OBJ(*, GOOD):DROP_WARRIOR
+M:3d7:MON(k)
+D:Strong and powerful ... for a kobold.
+I:COLOR(Blue)
+P:Stats:1:0:0:1:1:0
+P:Life:105
+P:Weight:250
+
+N:k.Debby:Madame Debby
+I:LVL(51):RARITY(3):ALLOC(UNIQUE)
+I:SPEED(+10):HP(2400):AC(100):EXP(16000)
+I:KIND(HUMAN|HORROR):ALIGN(Evil):CAN(SPEAK):ATTR(FEMALE|SMART)
+I:LIGHT(2):ALERT(300',Observant):MOVE(OPEN|BASH|SWIM)
+B:INSULT(x2)
+I:RESIST(ACID|FIRE|POIS|CONF|NETHER|CHAOS):IMMUNE(SLEEP)
+S:FREQ_30 | PARALYZE | SCARE | CAUSE_3 | BR_CONFUSION | BR_NETHER | BR_CHAOS
+O:3d2:OBJ(*, GOOD)
+D:Sukarno's third wife. Her face could sink a thousand ships, but Sukarno is not too selective.
+I:DISPLAY(k,Violet):POS(CORPSE)
+P:Copy:Kobold:Mauler
+P:Weight:180
+
+########################################################################
+# Naga
+T:n.base:Naga
+I:DISPLAY(n):POS(CORPSE|GAIN_AC)
+I:ALIGN(Evil):ATTR(FEMALE)
+I:ALERT(Very Inattentive):MOVE(RAND_25|BASH|PICKUP|SWIM)
+P:Copy:Yeek:Warrior
+P:Body:Naga
+P:Weight:100
+
+N:n.black:n.base:Black naga
+I:LVL(3,30):RARITY(1)
+I:HP(6d8):AC(40):EXP(22):EVOLVE(n.green, 40)
+I:ALERT(160')
+B:CRUSH:HURT(1d6+3)
+O:60%:OBJ(*$)
+D:A large black serpent's body with a female torso.
+I:COLOR(Light Dark)
+
+N:n.green:n.base:Green naga
+I:LVL(5,40):RARITY(1):WILD(SHORE)
+I:HP(9d8):AC(40):ALERT(180'):EXP(30):EVOLVE(n.red, 40)
+B:CRUSH:HURT(1d8+3)
+B:SPIT:ACID(2d8)
+I:RESIST(ACID)
+O:60%:OBJ(*$)
+D:A large green serpent with a female's torso. Her green skin glistens with acid.
+I:COLOR(Green)
+
+N:n.red:n.base:Red naga
+I:LVL(7,40):RARITY(2):WILD(SHORE)
+I:HP(11d8):AC(40):EXP(40):EVOLVE(n.dark, 200)
+B:CRUSH:HURT(1d7+3)
+B:BITE:HURT(1d5):LOSE_STR(50%)
+O:60%:OBJ(*$)
+D:A large red snake with a woman's torso.
+I:COLOR(Light Red)
+
+N:n.dark:n.base:Dark naga
+I:LVL(15,50):RARITY(2)
+I:HP(22d11):AC(65):ALERT(600',Overlooks):EXP(90):EVOLVE(n.spirit, 1000)
+B:STING:HURT(1d7+2)
+B:BITE:HURT(1d7+2)
+I:RESIST(COLD|POIS|WATER)
+S:1_IN_4 | PARALYZE | CONFUSE | BO_COLD | HEAL | DARKNESS
+O:1d3:DROP_MAGE
+D:A giant snake-like figure with a woman's torso. Not as strong
+D:as other nagas, but more talented in magic.
+I:COLOR(Light Dark)
+P:Copy:Yeek:Mage
+P:Body:Naga
+
+N:n.guardian:n.base:Guardian naga
+I:LVL(15,50):RARITY(2)
+I:HP(24d11):AC(65):EXP(80):EVOLVE(n.spirit, 800)
+B:CRUSH:HURT(1d8+4)
+B:BITE(x2):HURT(1d6+2)
+O:1d3:OBJ(*$)
+D:A giant snake-like figure with a woman's torso.
+I:COLOR(Yellow)
+
+N:n.aquatic:n.base:Aquatic naga
+I:LVL(26,60):RARITY(1):WILD(SHORE|OCEAN)
+I:HP(30d10):AC(50):EXP(60)
+I:KIND(AQUATIC):ATTR(SMART)
+I:ALERT(100',Fairly Observant):MOVE(SWIM)
+B:CRUSH(x2):HURT(1d8+4)
+B:BITE:HURT(1d8):POISON(2d8)
+B:BITE:HURT(1d8+4)
+I:RESIST(CONF|WATER):IMMUNE(SLEEP)
+S:1_IN_7 | DARKNESS | CAUSE_4 | BO_ICE
+O:1d2+2:OBJ(*)
+D:A naga adapted to underwater life. She has a fish-like tail and a pair of gills.
+I:COLOR(White):POS(SEE_INVIS)
+P:Copy:Human:Priest
+P:Body:Naga
+
+N:n.spirit:n.base:Spirit naga
+I:LVL(28,70):RARITY(2)
+I:HP(30d15):AC(75):EXP(60)
+I:CAN(INVIS):MOVE(FLY)
+B:CRUSH:HURT(1d8+4)
+B:BITE(x2):HURT(1d7+2)
+B:TOUCH:DRAIN_MANA(1d10)
+I:RESIST(CONF):IMMUNE(SLEEP)
+S:1_IN_4 | HEAL | BLIND | MIND_BLAST | DARKNESS
+O:1d2+1:OBJ(*)
+D:A wraithly snake-like form with the torso of a beautiful woman, it is the
+D:most powerful of its kind.
+I:COLOR(Light Blue):POS(SEE_INVIS)
+P:Copy:Demigod:Priest
+P:Body:Naga
+
+########################################################################
+# Harpy
+N:H.white harpy:White harpy
+I:LVL(2,20):RARITY(1):WILD(MOUNTAIN)
+I:HP(2d5):AC(17):EXP(7):EVOLVE(H.black harpy, 30)
+I:KIND(ANIMAL):ALIGN(Evil):ATTR(FEMALE)
+I:ALERT(160',Fairly Observant):MOVE(RAND_25|FLY)
+B:CLAW(x2):HURT(1d2)
+B:BITE:HURT(1d3)
+D:A flying, screeching bird with a woman's face.
+I:DISPLAY(H,White):POS(CORPSE|GAIN_AC)
+P:Stat:Str(-3):Int(1):Wis(-2):Dex(2):Con(-1):Chr(3)
+P:Skill:Dis(20+40):Dev(25+40):Sav(30+50):Stl(2):Srh(15):Fos(15):Thn(30+50):Thb(30+40)
+P:Class:Warrior
+P:Life:50
+P:Body:Harpy
+P:Weight:100
+
+N:H.black harpy:H.white harpy:Black harpy
+I:LVL(9,40):RARITY(1)
+I:SPEED(+10):HP(3d8):AC(22):EXP(19)
+B:CLAW(x2):HURT(1d3)
+B:BITE:HURT(1d3)
+D:A woman's face on the body of a vicious black bird.
+I:COLOR(Light Dark)
+
+########################################################################
+# Yeek
+T:y.base:Yeek
+I:DISPLAY(y):POS(CORPSE)
+I:KIND(ANIMAL):LIGHT(0+1):ATTR(MALE)
+I:ALERT(180',Fairly Observant):MOVE(OPEN|BASH)
+I:IMMUNE(ACID)
+P:Stat:Str(-5):Int(1):Wis(1):Dex(2):Con(-3):Chr(-3)
+P:Skill:Dis(25+60):Dev(35+50):Sav(30+50):Stl(7):Srh(20):Fos(20):Thn(20+25):Thb(40+50)
+P:Class:Warrior
+P:Life:80
+P:Weight:90
+
+N:y.blue:y.base:Blue yeek
+I:LVL(2,20):RARITY(1)
+I:HP(2d6):AC(14):EXP(6):EVOLVE(y.brown, 30)
+B:HIT:HURT(2d4)
+O:60%:OBJ(*$)
+D:A small humanoid figure.
+I:COLOR(Blue)
+
+N:y.brown:y.base:Brown yeek
+I:LVL(8,40):RARITY(1)
+I:HP(4d8):AC(18):EXP(11):EVOLVE(y.master, 120)
+B:HIT:HURT(1d7)
+O:60%:OBJ(*$)
+D:It is a strange small humanoid.
+I:COLOR(Umber)
+
+N:y.kamikaze:y.base:Kamikaze yeek
+I:LVL(10,40):RARITY(1)
+I:SPEED(+3):HP(4d8):AC(18):EXP(10)
+B:EXPLODE:DAM(7d2)
+D:The evil wizard Bruce has trained them to be living weapons.
+I:COLOR(Light Red):POS(-CORPSE)
+
+N:y.Orfax:y.base:Orfax, Son of Boldor
+I:LVL(10):RARITY(3):ALLOC(UNIQUE|ESCORT)
+I:SPEED(+10):HP(120):AC(20):EXP(80)
+I:CAN(SPEAK):ATTR(SMART)
+B:HIT(x2):HURT(1d8)
+B:INSULT(x2)
+O:OBJ(*, GOOD)
+S:1_IN_4 | HEAL | BLINK | TELE_TO | SLOW | CONFUSE | S_MONSTER(1)
+M:1d7:MON(y.master)
+M:2d7:MON(y)
+D:He's just like daddy! He knows mighty spells, but fortunately he is a yeek.
+I:COLOR(Light Blue)
+P:Copy:Yeek:Mage
+
+N:y.master:y.base:Master yeek
+I:LVL(12,40):RARITY(2)
+I:HP(12d9):AC(24):EXP(28)
+B:HIT:HURT(1d8)
+O:60%:OBJ(*$)
+S:1_IN_4 | BLINK | TELE_SELF | BLIND | SLOW | BA_POISON | S_MONSTER(1)
+D:A small humanoid that radiates some power.
+I:COLOR(Green)
+P:Copy:Yeek:Priest
+
+N:y.Boldor:y.base:Boldor, King of the Yeeks
+I:LVL(13):RARITY(3):ALLOC(UNIQUE|ESCORT)
+I:SPEED(+10):HP(180):AC(24):EXP(200)
+I:CAN(SPEAK):ATTR(SMART)
+B:HIT(x3):HURT(1d6+2)
+O:1d2+1:OBJ(*, GOOD)
+S:1_IN_3 | HEAL | BLINK | TELE_SELF | BLIND | SLOW | S_KIN
+M:2d7:MON(y.master)
+M:3d7:MON(y)
+D:A great yeek, powerful in magic and sorcery, but a yeek all the same.
+I:COLOR(Violet)
+P:Copy:Yeek:Mage
+P:Speed:+7
+
+########################################################################
+# Rodents (and Rabbits)
+N:r.wild rabbit:Wild rabbit
+I:LVL(0):RARITY(3):WILD(ONLY|GRASS|WOOD)
+I:HP(1d2):AC(1):EXP(0):EVOLVE(r.vorpal bunny, 200)
+I:KIND(ANIMAL):ALERT(300',Fairly Observant):MOVE(RAND_50)
+B:BITE:HURT(1d3)
+D:It is not a carnivore, but will defend itself if you stray too close.
+I:DISPLAY(r,Light Umber):POS(CORPSE|SKELETON)
+P:Copy:Yeek:Wild-Talent
+P:Stats:-5:0:0:0:-5:0
+P:Life:50
+P:Body:Scrawny
+P:Weight:2
+
+N:r.white mouse:Giant white mouse
+I:LVL(1,10):RARITY(1):WILD(GRASS)
+I:HP(1d3):AC(4):EXP(3):EVOLVE(r.white rat, 5)
+I:KIND(ANIMAL):CAN(MULTIPLY)
+I:ALERT(80',Fairly Unseeing):MOVE(RAND_50|SWIM)
+B:BITE:HURT(1d5)
+S:MULTIPLY
+D:It is about three feet long with large teeth.
+I:DISPLAY(r,White):POS(CORPSE|GAIN_AC)
+P:Copy:Snotling:Warrior
+P:Life:50
+P:Body:Scrawny
+P:Weight:10
+
+N:r.white rat:Giant white rat
+I:LVL(4,40):RARITY(1)
+I:HP(2d2):AC(7):EXP(2):EVOLVE(r.grey rat, 20)
+I:KIND(ANIMAL):CAN(MULTIPLY)
+I:ALERT(80',Fairly Unseeing):MOVE(RAND_25)
+B:BITE:POISON(1d6)
+S:MULTIPLY
+D:It is a very vicious rodent.
+I:DISPLAY(r,Light White)
+P:Copy:Snotling:Warrior
+P:Life:60
+P:Body:Scrawny
+P:Weight:10
+
+N:r.rat-thing:Rat-thing
+I:LVL(6,40):RARITY(1)
+I:SPEED(+10):HP(9d10):AC(20):EXP(10)
+I:KIND(ANIMAL):ALIGN(Evil):ALERT(120',Fairly Unseeing)
+B:BITE(x2):HURT(2d3+2)
+S:1_IN_9 | SCARE
+D:A ratlike creature with a humanlike face. "The bones of the
+D:tiny paws, it is rumoured, imply prehensile characteristics
+D:more typical of a diminutive monkey than a of a rat; while the
+D:small skull with its savage yellow fangs is of the utmost
+D:anomalousness, appearing from certain angles like a miniature,
+D:monstrously degraded parody of a human skull."
+I:DISPLAY(r,Light Red):POS(CORPSE|GAIN_AC)
+P:Copy:Yeek:Rogue
+P:Body:Scrawny
+P:Weight:20
+
+N:r.grey rat:Giant grey rat
+I:LVL(9,40):RARITY(1)
+I:HP(2d3):AC(12):EXP(2)
+I:KIND(ANIMAL):CAN(MULTIPLY)
+I:ALERT(80',Fairly Unseeing):MOVE(RAND_25)
+B:BITE:HURT(1d2):POISON(1d5)
+I:RESIST(POIS)
+S:MULTIPLY
+D:It is a rodent of unusual size.
+I:DISPLAY(r,Slate)
+P:Copy:Snotling:Warrior
+P:Life:80
+P:Body:Scrawny
+P:Weight:15
+
+N:r.skaven:Skaven
+I:LVL(9,40):RARITY(1):WILD(WASTE|SWAMP)
+I:HP(11d9):AC(25):EXP(20)
+I:ALIGN(Evil):ATTR(MALE)
+I:ALERT(150',Fairly Unseeing):MOVE(OPEN)
+B:HIT(x2):HURT(1d5)
+O:90%:1d2:OBJ(*$)
+M:3d3:MON(r.skaven)
+D:A mutated rat-creature from the great waste, it is vaguely
+D:humanoid in appearance and walks on its hind legs. This race
+D:serves chaos fervently and is greatly feared by others.
+I:DISPLAY(r,Light Green):POS(CORPSE|SKELETON|GAIN_AC)
+P:Copy:Human:Wild-Talent
+P:Body:Scrawny
+P:Weight:50
+
+N:r.rock mole:Rock mole
+I:LVL(9,40):RARITY(2)
+I:HP(11d11):AC(30):EXP(25)
+I:KIND(ANIMAL):ATTR(WEIRD_MIND)
+I:ALERT(Inattentive):MOVE(BASH|DESTROY|TUNNEL)
+B:BITE(x2):HURT(1d8+2)
+D:Despite its minuscule size, this mole creature has fangs powerful
+D:enough to bore through solid rock.
+I:DISPLAY(r,Slate):POS(CORPSE|GAIN_AC)
+P:Copy:Snotling:Warrior
+P:Body:Scrawny
+P:Weight:75
+
+N:r.skaven shaman:Skaven shaman
+I:LVL(9,50):RARITY(1):WILD(WASTE|SWAMP)
+I:HP(10d8):AC(15):EXP(36)
+I:LIGHT(0+2):ALIGN(Evil):ATTR(MALE)
+I:ALERT(Fairly Unseeing):MOVE(OPEN|BASH)
+B:HIT(x2):HURT(1d7)
+S:1_IN_8 | BLINK | CAUSE_1 | MISSILE | CONFUSE | SCARE
+O:90%:DROP_PRIEST_EVIL
+D:The shaman of a skaven tribe gets his powers from a mystic
+D:stone corrupted by chaos, called a Warp Stone.
+I:DISPLAY(r,Green):POS(CORPSE|SKELETON|GAIN_AC)
+P:Copy:Snotling:Priest
+P:Body:Scrawny
+P:Weight:120
+
+N:r.vorpal bunny:Vorpal bunny
+I:LVL(11,40):RARITY(3):WILD(MOUNTAIN)
+I:SPEED(+10):HP(10d10):AC(40):EXP(40)
+I:ALERT(400',Ever Vigilant):MOVE(BASH)
+B:BITE(x2):HURT(2d3+2):CUT(1d3, 30%)
+S:1_IN_8 | BLINK
+D:It looks very cute, except for the razor sharp teeth. It moans
+D:ominously as it jumps at your throat!
+I:DISPLAY(r,White):POS(CORPSE|GAIN_AC)
+P:Copy:Snotling:Rogue
+P:Body:Scrawny
+P:Weight:10
+
+N:r.wererat:Wererat
+I:LVL(15,50):RARITY(2)
+I:HP(20d8):AC(10):EXP(55)
+I:KIND(ANIMAL):ALIGN(Evil)
+I:ALERT(100',Fairly Observant):MOVE(OPEN|BASH)
+B:CLAW(x2):HURT(1d5+2)
+B:BITE:HURT(1d7+3)
+S:1_IN_9 | BLINK | CAUSE_2 | BO_COLD | BA_POISON | S_KIN
+O:60%:OBJ(GOLD)
+D:A large rat with glowing red eyes. The wererat is a disgusting creature,
+D:relishing in filth and disease.
+I:DISPLAY(r,Light Dark):POS(CORPSE|GAIN_AC)
+P:Copy:Yeek:Priest
+P:Body:Scrawny
+P:Weight:30
+
+N:r.electric rat:Electric rat
+I:LVL(24,50):RARITY(2)
+I:HP(20d10):AC(10):EXP(200)
+I:KIND(ANIMAL):LIGHT(1):ALERT(Unseeing)
+B:CLAW(x2):ELEC(1d5)
+B:BITE:ELEC(1d4)
+A:ELEC(1d2)
+I:RESIST(ELEC)
+S:1_IN_5 | BR_ELEC | BO_ELEC
+O:1d2:OBJ(GOLD)
+I:DISPLAY(r,Yellow):POS(CORPSE|GAIN_AC)
+P:Copy:Snotling:Rogue
+P:Body:Scrawny
+P:Weight:20
+
+N:r.Tsathoggua:Tsathoggua, the Sleeper of N'kai
+I:LVL(74):RARITY(4):ALLOC(UNIQUE)
+I:SPEED(+20):HP(6600):AC(80):EXP(30000)
+I:KIND(HORROR):ALIGN(Evil):CAN(SPEAK):ATTR(SMART)
+I:ALERT(300',Very Inattentive):MOVE(BASH|PUSH|CLEARWEB)
+B:CRUSH(x2):HURT(5d6):LOSE_ALL
+B:CRUSH(x2):ACID(5d6)
+I:RESIST(ACID|COLD|POIS|CONF|NETHER):IMMUNE(SLEEP|SLOW|TELE)
+S:FREQ_35 | S_DEMON | S_MONSTER | S_UNDEAD | PARALYZE | SCARE | MIND_BLAST |
+S:BR_ACID | BR_NETHER | CAUSE_4
+O:3d2:OBJ(*, GOOD)
+D:"...the formless bulking of a couchant mass. And the mass stirred
+D:a little... and put forth with infinite slothfulness a huge and
+D:toad-shaped head. And the head opened its eyes very slowly, as if
+D:half awakened from slumber, so that they were visible as two slits
+D:of oozing phosphor in the black browless face."
+I:DISPLAY(r,Light Dark):POS(GAIN_AC|SEE_INVIS|HOLD_LIFE)
+P:Copy:Beastman:Beastmaster
+P:Body:Demonic Horror
+P:Weight:500
+
+########################################################################
+# Balls (*)
+N:*.yellow:Yellow light
+I:LVL(4,30):RARITY(1)
+I:SPEED(+10):HP(2d6):AC(12):EXP(5)
+I:KIND(NONLIVING):LIGHT(3):ATTR(EMPTY_MIND)
+I:ALERT(80',Fairly Unseeing):MOVE(FLY)
+B:EXPLODE:LIGHT(1d2)
+I:RESIST(LIGHT)
+D:A fast-moving bright light.
+I:DISPLAY(*,Yellow):POS(GAIN_AC)
+P:Copy:Snotling:Warrior
+P:Body:Wisp
+P:Weight:10
+
+N:*.floating:Floating orb
+I:LVL(15,50):RARITY(2)
+I:SPEED(+10):HP(10d7):AC(25):EXP(50)
+I:KIND(NONLIVING):ALERT(250',Observant):MOVE(NEVER|FLY)
+I:RESIST(ACID|FIRE|COLD|POIS|CONF):IMMUNE(SLEEP|FEAR|BLIND)
+S:1_IN_1 | MISSILE
+O:60%:OBJ(*)
+D:A metallic ball floating in the air, that turns to track you with evil intent.
+I:DISPLAY(*,Light Blue):POS(GAIN_AC)
+P:Copy:Snotling:Mage
+P:Body:Orb
+P:Weight:10
+
+T:*.base:Exploding sphere
+I:DISPLAY(*):POS(GAIN_AC)
+I:SPEED(+10):HP(6d6):AC(30)
+I:KIND(NONLIVING):ATTR(COLD_BLOOD|EMPTY_MIND)
+I:ALERT(1000',Ever Vigilant):MOVE(FLY)
+I:RESIST(CONF):IMMUNE(SLEEP|FEAR|BLIND)
+P:Copy:Snotling:Warrior
+P:Body:Orb
+P:Weight:25
+
+N:*.cold:*.base:Freezing sphere
+I:LVL(17,50):RARITY(1):EXP(50)
+B:EXPLODE:COLD(6d8)
+A:COLD(1d2)
+I:IMMUNE(COLD):VULN(FIRE)
+D:The embodiment of cold.
+I:COLOR(White)
+
+N:*.fire:*.base:Jumping fireball
+I:LVL(17,50):RARITY(1):EXP(50)
+I:LIGHT(2)
+B:EXPLODE:FIRE(6d8)
+A:FIRE(1d2)
+I:IMMUNE(FIRE):VULN(COLD)
+D:The embodiment of heat.
+I:COLOR(Red)
+
+N:*.elec:*.base:Ball lightning
+I:LVL(17,60):RARITY(1):EXP(50)
+I:LIGHT(2)
+B:EXPLODE:ELEC(6d8)
+A:ELEC(1d2)
+I:IMMUNE(ELEC)
+D:A crackling ball of energy.
+I:COLOR(Light Blue)
+
+########################################################################
+# Leprechaun
+N:h.cheerful:Cheerful leprechaun
+I:LVL(14,50):RARITY(2)
+I:SPEED(+10):HP(2d5):AC(6):EXP(23):EVOLVE(h.fanatic, 2000)
+I:LIGHT(1):ALIGN(Good):CAN(MULTIPLY):ATTR(MALE)
+I:ALERT(80',Observant):MOVE(RAND_50|OPEN)
+B:TOUCH:EAT_GOLD
+B:TOUCH:EAT_FOOD
+S:1_IN_6 | BLINK | CLAIRVOYANCE | MULTIPLY
+O:60%:OBJ(GOLD)
+D:A merry little gnome.
+I:DISPLAY(h,Light Green):POS(CORPSE)
+P:Copy:High-Elf:Ninja
+P:Skills:0:0:0:7:0:0:0:0
+P:Life:60
+P:Speed:+10
+P:Weight:60
+
+N:h.malicious:Malicious leprechaun
+I:SPEED(+10):HP(4d5):AC(13)
+I:KIND(THIEF):ALIGN(Evil):CAN(MULTIPLY|INVIS):ATTR(MALE|COLD_BLOOD)
+I:LIGHT(0+1):ALERT(80',Fairly Observant):MOVE(RAND_25|OPEN|PICKUP)
+I:LVL(35,80):RARITY(4):EXP(85):EVOLVE(h.fanatic, 500)
+B:TOUCH:EAT_GOLD
+B:TOUCH:EAT_ITEM
+I:VULN(LIGHT)
+S:1_IN_6 | BLINK | TELE_SELF | TELE_TO | CAUSE_1 | CLAIRVOYANCE | MULTIPLY
+O:1d2:OBJ(GOLD)
+D:This little creature has a fiendish gleam in its eyes.
+I:DISPLAY(h,Violet):POS(CORPSE|SEE_INVIS)
+P:Copy:High-Elf:Ninja
+P:Skills:0:0:0:7:0:0:0:0
+P:Life:75
+P:Speed:+10
+P:Weight:40
+
+N:h.death:Death leprechaun
+I:LVL(44,90):RARITY(6)
+I:SPEED(+10):HP(6d6):AC(13):EXP(85)
+I:KIND(THIEF|UNDEAD|NONLIVING):ALIGN(Evil):CAN(MULTIPLY|INVIS):ATTR(SMART|COLD_BLOOD|MALE)
+I:LIGHT(0+1):ALERT(80',Fairly Observant):MOVE(RAND_25|OPEN|PICKUP)
+B:TOUCH:HURT(1d10):DRAIN_EXP(40d6)
+B:TOUCH:EAT_GOLD
+B:TOUCH:EAT_ITEM
+I:IMMUNE(NETHER):VULN(LIGHT)
+S:1_IN_6 | BLINK | TELE_SELF | TELE_TO | CAUSE_3 | ANIM_DEAD | CLAIRVOYANCE | MULTIPLY 
+D:Nasty undead little creatures. They are chanting the name of the
+D:sinister wizard who created them: 'Bruce! Bruce..!'
+I:DISPLAY(h,Light Dark):POS(CORPSE|SEE_INVIS)
+P:Copy:High-Elf:Ninja
+P:Skills:0:0:0:7:0:0:0:0
+P:Life:85
+P:Speed:+10
+P:Weight:50
+
+N:h.fanatic:Leprechaun fanatic
+I:LVL(46,80):RARITY(6)
+I:SPEED(+13):HP(6d6):AC(13):EXP(80)
+I:ALIGN(Evil):LIGHT(0+1):CAN(MULTIPLY):ATTR(SMART|MALE)
+I:ALERT(80',Fairly Observant):MOVE(RAND_25|OPEN|PICKUP)
+B:EXPLODE:DAM(15d5)
+S:1_IN_6 | BLINK | TELE_SELF | TELE_TO | MULTIPLY
+D:These leprechauns are not afraid to die for their cause. They are
+D:carrying explosives and making terrorist strikes...
+I:DISPLAY(h,Light Dark)
+P:Copy:Dark-Elf:Rogue
+P:Speed:+13
+P:Weight:50
+
+########################################################################
+# Monkeys, Yeti, ...
+N:H.flying monkey:Carnivorous flying monkey
+I:LVL(8,40):RARITY(2):WILD(WOOD|MOUNTAIN)
+I:HP(22d9):AC(20):EXP(30):EVOLVE(H.owlbear, 100)
+I:KIND(ANIMAL):ALERT(300',Fairly Unseeing):MOVE(FLY)
+B:CLAW(x2):HURT(1d5+3)
+B:BITE:HURT(2d3+3)
+D:It looks fantastic, yet frightening.
+I:DISPLAY(H,Light Red):POS(CORPSE|GAIN_AC)
+P:Copy:Human:Warrior
+P:Weight:30
+
+N:H.owlbear:Owlbear
+I:LVL(10,40):RARITY(1)
+I:HP(15d8):AC(20):EXP(35)
+I:KIND(ANIMAL):ALIGN(Evil)
+I:ALERT(Fairly Unseeing):MOVE(OPEN|BASH)
+B:CLAW(x2):HURT(1d3)
+B:CRUSH:HURT(1d10)
+D:A bizarre bear-creature with the claws and the face of an owl.
+I:DISPLAY(H,Orange):POS(CORPSE|GAIN_AC)
+P:Copy:Human:Warrior
+P:Body:Bear
+P:Weight:250
+
+N:Y.yeti:Yeti
+I:LVL(9,40):RARITY(3):WILD(MOUNTAIN)
+I:HP(11d9):AC(24):EXP(30):EVOLVE(Y.hibagon, 100)
+I:KIND(ANIMAL):ALERT(Fairly Observant):MOVE(OPEN|BASH|CLIMB)
+B:CLAW(x2):HURT(1d3)
+B:BITE:HURT(1d5)
+I:RESIST(COLD)
+S:FREQ_5 | BERSERK
+I:DISPLAY(Y,White):POS(CORPSE|GAIN_AC)
+P:Copy:Human:Mauler
+P:Weight:250
+D:A large white figure covered in shaggy fur.
+
+#XXX What is this?
+N:Y.hibagon:Y.yeti:Hibagon
+I:LVL(14,30):RARITY(10)
+I:HP(11d15):AC(30):EXP(30):EVOLVE(Y.sasquatch, 400)
+I:ALERT(Overlooks)
+B:CLAW(x2):HURT(1d7)
+B:BITE:HURT(2d7)
+I:COLOR(Red)
+
+N:Y.sasquatch:Y.yeti:Sasquatch
+I:LVL(20,70):RARITY(3)
+I:SPEED(+10):HP(20d19):AC(40):EXP(180)
+B:CLAW(x2):HURT(1d8+2)
+B:BITE:HURT(1d8+4)
+S:FREQ_5 | BERSERK
+D:A tall shaggy, furry humanoid, it could call the yeti brother.
+I:COLOR(Light White)
+
+N:H.monkey of nikko:Monkey of Nikko
+I:LVL(18,40):RARITY(3)
+I:HP(20d8):AC(30):EXP(50)
+I:KIND(ANIMAL):ALERT(300',Fairly Unseeing)
+B:HIT(x2):HURT(1d7+4)
+O:60%:OBJ(GOLD)
+M:3d3:MON(H.monkey of nikko)
+I:DISPLAY(Y,Light Umber):POS(CORPSE|SKELETON)
+P:Copy:Human:Warrior
+P:Weight:50
+
+########################################################################
+# Hybrids
+N:H.chaos shapechanger:Chaos shapechanger
+I:LVL(11,40):RARITY(2)
+I:HP(20d9):AC(14):EXP(38):EVOLVE(H.chaos beastman, 350)
+I:ALIGN(Evil):ALERT(100',Fairly Observant)
+B:HIT(x2):HURT(1d5)
+B:HIT:HURT(1d3):CONFUSE
+S:1_IN_5 | BO_FIRE | BO_COLD | CONFUSE
+O:60%:OBJ(*$)
+D:A vaguely humanoid form constantly changing its appearance.
+I:DISPLAY(H,Violet,ATTR_MULTI|ATTR_ANY|SHAPECHANGER):POS(GAIN_AC)
+P:Copy:Beastman:Chaos-Warrior
+P:Weight:150
+
+N:H.hippocampus:Hippocampus
+I:LVL(11,40):RARITY(1):WILD(SHORE|OCEAN)
+I:HP(20d9):AC(14):EXP(30)
+I:KIND(AQUATIC|ANIMAL):ATTR(RIDING)
+I:ALERT(120',Fairly Observant):MOVE(SWIM)
+B:BITE(x2):HURT(2d5)
+I:RESIST(WATER)
+D:A truly strange hybrid of a horse and a fish.
+I:DISPLAY(H,Light Blue):POS(CORPSE|GAIN_AC)
+P:Copy:Human:Warrior
+P:Body:Horse
+P:Weight:300
+
+N:H.hippogriff:Hippogriff
+I:LVL(15,40):RARITY(1)
+I:SPEED(+5):HP(400):AC(60):EXP(150)
+I:KIND(ANIMAL):ATTR(RIDING)
+I:ALERT(Inattentive):MOVE(BASH|FLY)
+B:KICK(x2):HURT(4d2)
+B:BITE:HURT(4d2)
+I:RESIST(ELEC|COLD|POIS|CHAOS)
+D:A strange hybrid of eagle, lion and horse. It looks weird.
+I:DISPLAY(H,Light Umber):POS(CORPSE|GAIN_AC)
+P:Copy:Human:Warrior
+P:Body:Hound
+P:Weight:300
+
+N:H.griffon:Griffon
+I:LVL(15,50):RARITY(1)
+I:SPEED(+5):HP(300):AC(50):EXP(150)
+I:KIND(ANIMAL):ATTR(RIDING)
+I:ALERT(Inattentive):MOVE(BASH|FLY)
+B:CLAW(x2):HURT(2d3)
+B:BITE:HURT(2d3)
+I:RESIST(ACID|ELEC|COLD)
+S:1_IN_10 | SHOOT(4d5)
+D:It is half lion, half eagle. It flies menacingly towards you.
+I:DISPLAY(H,Umber):POS(CORPSE|GAIN_AC)
+P:Copy:Human:Mauler
+P:Body:Hound
+P:Weight:250
+
+N:H.sphinx:Sphinx
+I:LVL(17,50):RARITY(2):WILD(MOUNTAIN)
+I:HP(60d5):AC(80):EXP(80)
+I:KIND(ANIMAL):ATTR(RIDING)
+I:ALERT(Fairly Unseeing):MOVE(OPEN|BASH|FLY)
+B:CLAW(x2):HURT(1d6+3):LOSE_CHR(25%)
+S:1_IN_11 | SCARE | CONFUSE
+O:1d2:OBJ(GOLD)
+D:It will eat you if you cannot answer its riddle.
+I:DISPLAY(H,Orange):POS(CORPSE|GAIN_AC)
+P:Copy:Human:Rogue
+P:Body:Hound
+P:Weight:150
+
+N:H.swamp thing:Swamp thing
+I:LVL(17,70):RARITY(2):WILD(SWAMP)
+I:HP(10d20):AC(60):EXP(80)
+I:ALERT(Fairly Unseeing):MOVE(OPEN|BASH|SWIM)
+B:CLAW(x2):HURT(1d5+3):TERRIFY
+D:A creature that was once human, but is now as green as moss.
+I:DISPLAY(H,Green):POS(GAIN_AC)
+P:Copy:Human:Warrior
+P:Weight:150
+
+N:H.chaos beastman:Chaos beastman
+I:LVL(18):RARITY(2)
+I:HP(20d8):AC(50):EXP(75)
+I:ALIGN(Evil):ALERT(Fairly Unseeing):MOVE(OPEN|BASH)
+B:HIT:HURT(2d5+3):CONFUSE
+B:HIT:HURT(2d5+2):DRAIN_EXP(20d6)
+I:RESIST(FIRE|POIS|CONF):IMMUNE(SLEEP)
+S:1_IN_8 | MISSILE | BO_FIRE | CONFUSE | TELE_SELF
+O:1d2:OBJ(*$)
+D:A truly loathsome thing, twisted by chaos, it is a mixture of several different kinds of creature.
+I:DISPLAY(H,Umber,ATTR_MULTI|ATTR_ANY):POS(CORPSE)
+P:Copy:Beastman:Chaos-Warrior
+P:Weight:150
+
+N:H.chimera:Chimera
+I:LVL(20,70):RARITY(1):WILD(MOUNTAIN)
+I:HP(13d8):AC(15):EXP(100):EVOLVE(H.gorgimera, 800)
+I:ATTR(RIDING):ALERT(120',Fairly Observant):MOVE(BASH|FLY)
+B:BITE:HURT(1d9)
+B:BITE(x2):FIRE(1d3)
+I:RESIST(FIRE)
+S:1_IN_10 | BR_FIRE
+D:It is a strange concoction of lion, dragon and goat. It looks very odd but very avoidable.
+I:DISPLAY(H,Yellow):POS(CORPSE|GAIN_AC)
+P:Copy:Human:Warrior
+P:Body:Dragon
+P:Weight:150
+
+N:H.headless:Headless
+I:LVL(27,70):RARITY(1):WILD(MOUNTAIN|WASTE)
+I:HP(25d17):AC(50):EXP(100):EVOLVE(H.giant headless, 6000)
+I:ALIGN(Evil):ALERT(Unseeing):MOVE(OPEN|BASH)
+B:HIT(x2):HURT(1d7)
+I:IMMUNE(BLIND)
+S:1_IN_6 | SCARE
+O:60%:OBJ(*$)
+M:2d3:MON(H.headless)
+M:5%:MON(G.headless)
+D:Headless humanoid abominations created by a magical mutation.
+I:DISPLAY(H,Umber):POS(CORPSE|SKELETON)
+P:Copy:Human:Rogue
+P:Body:Headless
+P:Weight:150
+
+N:H.gorgimera:Gorgimera
+I:LVL(27,70):RARITY(2)
+I:HP(25d20):AC(55):EXP(200)
+I:ATTR(RIDING):ALERT(120',Fairly Observant):MOVE(BASH|FLY)
+B:BITE(x2):FIRE(1d3)
+B:BITE:HURT(1d8+2)
+B:GAZE:DAM(2d4):PARALYZE(85%)
+I:RESIST(FIRE)
+S:1_IN_8 | BR_FIRE
+D:It has 3 heads - gorgon, goat and dragon - all attached to a lion's body.
+I:DISPLAY(H,Light Dark):POS(CORPSE|GAIN_AC)
+P:Copy:Human:Warrior
+P:Body:Gorgimera
+P:Weight:300
+
+N:H.manticore:Manticore
+I:LVL(30,60):RARITY(2):WILD(WOOD)
+I:SPEED(+10):HP(25d10):AC(15):EXP(300)
+I:ALIGN(Evil):ATTR(RIDING)
+I:ALERT(120',Fairly Observant):MOVE(BASH|FLY)
+B:HIT(x3):HURT(2d4+5)
+S:FREQ_10 | SHOOT(7d6)
+D:It is a winged lion's body with a human head and a tail covered in vicious spikes.
+I:DISPLAY(H,Orange):POS(CORPSE|GAIN_AC)
+P:Copy:Human:Warrior
+P:Body:Hound
+P:Weight:250
+
+N:H.gorgon:Gorgon
+I:LVL(31,70):RARITY(2):WILD(WOOD)
+I:HP(30d20):AC(88):EXP(275)
+I:KIND(ANIMAL):ALIGN(Evil):ATTR(RIDING)
+I:ALERT(120',Fairly Observant):MOVE(BASH|PUSH)
+B:BUTT(x2):HURT(1d9+10)
+B:BITE:HURT(1d7):POISON(1d3)
+B:KICK:HURT(2d4)
+I:RESIST(ACID|POIS)
+S:FREQ_10 | BR_POISON
+D:A bull whose skin is made of steel plates. Watch out for its deadly breath!
+I:DISPLAY(H,Blue):POS(CORPSE|GAIN_AC)
+P:Copy:Human:Warrior
+P:Body:Hound
+P:Weight:300
+
+N:H.minotaur:Minotaur
+I:LVL(40,70):RARITY(2)
+I:SPEED(+20):HP(100d10):AC(25):EXP(2100):EVOLVE(H.maulotaur, 12000)
+I:ALIGN(Evil):ALERT(130',Fairly Observant)
+B:HIT(x2):HURT(3d6+4)
+B:BUTT(x2):HURT(2d6)
+D:It is a cross between a human and a bull.
+I:DISPLAY(H,Light Umber):MOVE(BASH):POS(CORPSE|SKELETON)
+P:Copy:Human:Mauler
+P:Body:Minotaur
+P:Weight:250
+
+N:H.giant headless:Giant headless
+I:LVL(41,70):RARITY(2)
+I:HP(30d25):AC(50):EXP(900)
+I:ALIGN(Evil):ALERT(Unseeing):MOVE(OPEN|BASH)
+B:HIT(x3):HURT(2d8+10)
+I:RESIST(POIS):IMMUNE(BLIND)
+S:1_IN_6 | SCARE | BA_NUKE | BLIND
+O:1d2:OBJ(*$)
+M:1d3:MON(H.giant headless)
+M:2d3:MON(H.headless)
+D:Giant headless humanoid abominations created by a magical mutation.
+I:DISPLAY(H,Umber):POS(CORPSE|SKELETON)
+P:Copy:Half-Giant:Rogue
+P:Body:Headless
+P:Weight:250
+
+N:H.maulotaur:Maulotaur
+I:LVL(50):RARITY(2)
+I:SPEED(+20):HP(3250):AC(50):EXP(8000)
+I:ALIGN(Evil):ALERT(130',Fairly Observant):MOVE(BASH|CLEARWEB)
+B:HIT(x2):SHATTER(8d8)
+B:BUTT(x2):HURT(4d6)
+I:RESIST(FIRE|TELE)
+S:1_IN_5 | BO_PLASMA | BA_FIRE | BERSERK
+O:60%:OBJ(*, GOOD)
+D:It is a belligerent minotaur with some destructive magical arsenal, armed with a hammer.
+I:DISPLAY(H,Umber):POS(CORPSE|GAIN_AC)
+P:Copy:Human:Mauler
+P:Body:Minotaur
+P:Weight:350
+
+N:H.Baphomet:Baphomet the Minotaur Lord
+I:LVL(51):RARITY(4):ALLOC(UNIQUE)
+I:SPEED(+20):HP(3500):AC(120):EXP(18000)
+I:ALIGN(Evil):CAN(SPEAK):ATTR(MALE)
+I:ALERT(300',Fairly Unseeing):MOVE(BASH|CLEARWEB)
+B:BUTT(x2):HURT(6d13+40)
+B:HIT(x2):HURT(5d10+25)
+I:RESIST(FIRE|POIS|CONF|FORCE):IMMUNE(SLEEP)
+S:1_IN_6 | SLOW | SHOOT(12d13) | BO_MANA | BO_PLASMA | BA_ELEC | BR_FORCE | BERSERK
+O:5d2:OBJ(*, GOOD)
+D:A fearsome bull-headed demon, Baphomet swings a mighty axe as he curses all that defy him.
+I:DISPLAY(H,Light Dark):POS(CORPSE|GAIN_AC)
+P:Copy:Half-Titan:Mauler
+P:Body:Minotaur
+P:Weight:700
+
+N:H.secrets:Keeper of Secrets
+I:LVL(61):RARITY(3)
+I:SPEED(+20):HP(4200):AC(150):EXP(17000)
+I:KIND(DEMON|NONLIVING|HORROR):ALIGN(Chaotic):ATTR(SMART)
+I:ALERT(300',Fairly Unseeing):MOVE(OPEN|BASH|PUSH|SWIM|CLEARWEB)
+B:HIT:HURT(6d12+40):CONFUSE
+B:HIT:HURT(6d12+40):TERRIFY
+B:HIT:HURT(6d12+40):BLIND
+B:HIT:HURT(6d12+40):LOSE_CHR(50%)
+I:RESIST(ACID|FIRE|COLD|POIS|CONF|NETHER|CHAOS):IMMUNE(SLEEP|SLOW)
+S:1_IN_4 | SCARE | BRAIN_SMASH | DRAIN_MANA | HEAL
+S:BR_CONFUSION | S_DEMON | S_UNDEAD | TELE_SELF | TELE_OTHER
+O:2d2:OBJ(*, GOOD)
+D:This demonic keeper of forbidden secrets looks like a hairless
+D:minotaur with extra arms, decorated with tattoos and nose rings.
+D:It is the embodiment of Slaanesh's perverted magic.
+I:DISPLAY(H,Violet):POS(GAIN_AC)
+P:Copy:Barbarian:Mauler
+P:Body:Keeper of Secrets
+P:Weight:350
+
+N:H.Hastur:Hastur the Unspeakable
+I:LVL(55):RARITY(4):ALLOC(UNIQUE)
+I:SPEED(+10):HP(5225):AC(150):EXP(23000)
+I:KIND(UNDEAD|NONLIVING|HORROR):ALIGN(Evil):CAN(SPEAK):ATTR(SMART|COLD_BLOOD)
+I:ALERT(Fairly Observant):MOVE(OPEN|BASH|SWIM|CLEARWEB)
+B:CRUSH:HURT(4d8+45)
+B:CRUSH:HURT(3d7+28):LOSE_CHR
+B:BITE(x2):HURT(6d6):DRAIN_EXP(80d6)
+A:ELEC(3d4)
+I:RESIST(COLD|POIS|CONF|DARK):IMMUNE(NETHER|SLEEP|SLOW|TELE):VULN(LIGHT)
+S:1_IN_4 | BLIND | PARALYZE | SCARE | CAUSE_4 | DRAIN_MANA |
+S:BRAIN_SMASH | BA_WATER(1d110+50) | S_DEMON | HASTE |
+S:TELE_SELF | TELE_OTHER | TELE_TO | HEAL | BR_DARK | BR_NETHER
+O:9d2:OBJ(*, GOOD)
+D:Its form is partially that of a reptile, partially that of a
+D:gigantic octopus. It will destroy you.
+I:DISPLAY(H,Blue):POS(GAIN_AC)
+P:Copy:Barbarian:Mauler
+P:Body:Dragon
+P:Weight:500
+
+N:H.jabberwock:Jabberwock
+I:SPEED(+20):HP(3200):AC(125):EXP(19000)
+I:KIND(ANIMAL):ALIGN(Evil):ATTR(RIDING)
+I:ALERT(350',Ignores):MOVE(BASH|FLY|CLEARWEB)
+I:LVL(65):RARITY(4)
+B:CLAW(x4):HURT(5d10+25)
+I:RESIST(CHAOS|TELE)
+S:1_IN_5 | CAUSE_4 | BR_CHAOS
+O:1d2:OBJ(*)
+D:"Beware the Jabberwock, my son! The jaws that bite, the claws that catch!"
+I:DISPLAY(H,Light Red,ATTR_MULTI):POS(CORPSE|GAIN_AC)
+P:Copy:Half-Giant:Mauler
+P:Body:Dragon
+P:Weight:1000
+
+N:H.Norsa:The Norsa
+I:LVL(70):RARITY(4):ALLOC(UNIQUE)
+I:SPEED(+20):HP(10000):AC(125):EXP(67500)
+I:KIND(HORROR):ALIGN(Evil):CAN(SPEAK):ATTR(RIDING)
+I:ALERT(Overlooks):MOVE(OPEN|BASH|PUSH|FLY|CLEARWEB)
+B:CRUSH:HURT(3d12+12):ACID(3d12)
+B:CRUSH:HURT(3d12+12):FIRE(3d12)
+B:CRUSH:HURT(3d12+12):ELEC(3d12)
+B:CRUSH:HURT(4d14+20):POISON(3d14)
+A:FIRE(3d5):COLD(3d5):ELEC(3d5)
+I:RESIST(BASE|POIS|CONF):IMMUNE(SLEEP|SLOW)
+S:FREQ_30 | BR_ACID | BR_FIRE | BR_COLD | BR_ELEC | BR_POISON |
+S:BLIND | CONFUSE | SCARE | S_HI_DRAGON | S_MONSTER
+O:9d2:OBJ(*, GREAT)
+D:An elephantine horror with five trunks, each capable of breathing
+D:destructive blasts of elements. It is said that it is better to
+D:face the fury of a thousand raging lions than the Norsa!
+I:DISPLAY(H,Light Blue,ATTR_MULTI):POS(CORPSE|GAIN_AC)
+P:Copy:Half-Titan:Blood-Knight
+P:Body:Norsa
+P:Weight:1000
+
+N:H.Y'golonac:Y'golonac
+I:LVL(75):RARITY(1):ALLOC(UNIQUE)
+I:SPEED(+10):HP(12870):AC(160):EXP(32500)
+I:KIND(NONLIVING|HORROR):ALIGN(Evil):CAN(SPEAK):ATTR(SMART)
+I:ALERT(80',Inattentive):MOVE(BASH|PUSH|CLEARWEB)
+B:TOUCH(x2):DAM(1d20):LOSE_INT(50%):LOSE_WIS(50%)
+B:BITE(x2):HURT(20d2+10)
+I:RESIST(POIS|CONF|NETHER):IMMUNE(SLEEP|SLOW|BLIND|TELE)
+S:1_IN_3 | SCARE | BLIND | CONFUSE | PARALYZE | HASTE | DRAIN_MANA |
+S:CAUSE_3 | CAUSE_4 | DARKNESS | AMNESIA | S_DEMON | S_HOUND | TELE_SELF | TELE_TO
+O:4d2:OBJ(*, GOOD)
+D:"He saw why the shadow on the frosted pane yesterday had been
+D:headless and he screamed... but before he could scream out his
+D:protest his breath was cut off, as the hands descended on his
+D:face and the wet red mouths opened in their palms."
+I:DISPLAY(H,Light Red):POS(GAIN_AC)
+P:Copy:Barbarian:Mauler
+P:Body:Headless
+P:Weight:1000
+
+########################################################################
+# Uncategorized XXX 
+
+N:h.zog:Zog
+I:LVL(5,40):RARITY(2)
+I:HP(13d9):AC(20):EXP(25)
+I:ALIGN(Evil):ALERT(Fairly Unseeing):MOVE(OPEN|BASH)
+B:HIT(x2):HURT(1d5+3)
+B:DROOL
+O:90%:OBJ(*$)
+D:Drooling, insectoid aliens with disgusting habits.
+I:DISPLAY(h,Blue):POS(SKELETON)
+P:Copy:Imp:Warrior
+P:Weight:80
+
+N:..space:Space monster
+I:LVL(8,40):RARITY(2)
+I:HP(21d8):AC(14):EXP(28)
+I:KIND(NONLIVING):ALERT(300',Fairly Unseeing):MOVE(PASSWALL|FLY)
+B:HIT:HURT(1d5):TERRIFY
+I:RESIST(ACID|CONF|DARK):IMMUNE(SLEEP|BLIND)
+D:A black hole in the fabric of reality.
+I:DISPLAY(.,Dark)
+P:Copy:Human:Warrior
+P:Weight:10
+
+N:u.sand-dweller:Sand-dweller
+I:LVL(10,40):RARITY(1):WILD(WASTE)
+I:HP(9d10):AC(20):EXP(30)
+I:ALIGN(Evil):ATTR(MALE):ALERT(Fairly Unseeing):MOVE(OPEN|BASH)
+B:CLAW(x2):HURT(1d6)
+I:VULN(LIGHT)
+O:90%:1d2:OBJ(*$)
+M:3d3:MON(u.sand-dweller)
+D:"Rough-skinned, large-eyed, large-eared, with a horrible,
+D:distorted resemblance to the koala bear facially, though
+D:his body had an appearance of emaciation."
+I:DISPLAY(u,Light Umber):POS(SKELETON)
+P:Copy:Beastman:Warrior
+P:Weight:100
+
+N:#.Willow:Old Man Willow
+I:LVL(22):RARITY(5):ALLOC(UNIQUE):WILD(ONLY|WOOD)
+I:HP(529):AC(20):EXP(150)
+I:KIND(ANIMAL):ATTR(COLD_BLOOD|EMPTY_MIND)
+I:ALERT(Fairly Unseeing):MOVE(NEVER)
+B:TOUCH(x2):HURT(2d6+3):PARALYZE(50%)
+B:CRUSH:HURT(1d12+6)
+I:RESIST(ACID|POIS|WATER):VULN(FIRE)
+S:1_IN_6 | TELE_TO
+O:OBJ(*, GOOD)
+D:"...a huge willow-tree, old and hoary. Enormous it looked, its
+D:sprawling branches going up like racing arms with may long-
+D:lingered hands, its knotted and twisted trunk gaping in wide
+D:fissures that creaked faintly as the boughs moved."
+I:DISPLAY(#,Slate):POS(CORPSE|GAIN_AC)
+P:Copy:Ent:Mauler
+P:Body:Tree
+P:Weight:500
+
+N:Y.dweller:Dweller on the threshold
+I:LVL(15,50):RARITY(5)
+I:HP(30d8):AC(30):EXP(50)
+I:KIND(DEMON|NONLIVING):ALIGN(Evil)
+I:ALERT(300',Fairly Unseeing):MOVE(NEVER)
+B:GAZE:PARALYZE(75%)
+B:GAZE:TERRIFY
+B:GAZE:CONFUSE
+I:RESIST(FIRE|COLD|POIS|CONF):IMMUNE(SLEEP|FEAR)
+S:1_IN_6 | BO_ACID | S_MONSTER(1) | SCARE | DRAIN_MANA
+O:60%:OBJ(*$)
+D:A creature like a giant purple Buddha with lots of teeth.
+D:It cleans them with the bones of sorcerers.
+I:DISPLAY(Y,Slate):POS(CORPSE|GAIN_AC)
+P:Copy:Human:Beastmaster
+P:Weight:150
+
+N:X.umber hulk:Umber hulk
+I:LVL(16,50):RARITY(1)
+I:HP(20d10):AC(50):EXP(75)
+I:KIND(ANIMAL):ALIGN(Evil):ATTR(COLD_BLOOD|EMPTY_MIND)
+I:ALERT(Fairly Observant):MOVE(BASH|TUNNEL)
+B:GAZE:CONFUSE
+B:HIT(x2):HURT(1d5)
+B:BITE:HURT(1d6+3)
+I:RESIST(POIS|CONF):IMMUNE(SLEEP):VULN(DISINTEGRATE)
+D:This bizarre creature has glaring eyes and large mandibles capable of
+D:slicing through rock.
+I:DISPLAY(X,Umber):POS(CORPSE|SKELETON|GAIN_AC)
+P:Copy:Kobold:Warrior
+P:Body:Umber Hulk
+P:Weight:200
+
+N:h.lizardman:Lizardman
+I:LVL(16,50):RARITY(3):WILD(SHORE)
+I:HP(16d10):AC(40):EXP(55):EVOLVE(h.lizard king, 800)
+I:ALIGN(Evil):LIGHT(0+1):ATTR(MALE)
+I:ALERT(Fairly Unseeing):MOVE(OPEN|BASH|SWIM)
+B:HIT(x2):HURT(2d4+5)
+I:RESIST(ACID)
+O:60%:OBJ(*$)
+M:3d3:MON(h.lizardman)
+D:Intelligent lizard beings from the depths.
+I:DISPLAY(h,Light Red):POS(CORPSE)
+P:Copy:Klackon:Wild-Talent
+P:Weight:150
+
+N:h.lizard king:h.lizardman:Lizard king
+I:LVL(20):RARITY(3):ALLOC(ESCORT)
+I:SPEED(+10):HP(198):AC(40):EXP(150)
+B:HIT(x2):HURT(2d5+9)
+B:WAIL:TERRIFY
+I:RESIST(POIS)
+O:1d3:DROP_WARRIOR
+M:3d3:MON(h.lizardman)
+D:A lizardman leader.
+I:DISPLAY(h,Light Red):POS(CORPSE)
+P:Copy:Klackon:Warrior
+P:Weight:150
+
+N:#.huorn:Huorn
+I:LVL(19,70):RARITY(1):WILD(ONLY|WOOD)
+I:HP(50d10):AC(45):EXP(75):EVOLVE(#.ent, 15000)
+I:KIND(ANIMAL):ALIGN(Evil):ATTR(WEIRD_MIND)
+I:ALERT(400',Fairly Unseeing):MOVE(NEVER)
+B:CRUSH(x4):HURT(2d5+3)
+I:RESIST(COLD|CONF|WATER):IMMUNE(SLEEP):VULN(FIRE)
+S:1_IN_9 | BLINK | TELE_TO
+O:60%:OBJ(*$)
+D:A very strong near-sentient tree, which has become hostile
+D:to humanoid forms of life.
+I:DISPLAY(#,Green):POS(CORPSE|GAIN_AC)
+P:Copy:Ent:Beastmaster
+P:Body:Tree
+P:Weight:350
+
+N:#.vampiric mist:Vampiric mist
+I:LVL(22,60):RARITY(1):WILD(SWAMP)
+I:HP(10d8):AC(55):EXP(40)
+I:KIND(NONLIVING):ALIGN(Evil):ATTR(COLD_BLOOD|EMPTY_MIND)
+I:ALERT(120',Fairly Observant):MOVE(RAND_25|PASSWALL|FLY)
+B:ENGULF:VAMP(2d6)
+I:RESIST(ACID|COLD|NETHER):IMMUNE(POIS|BLIND)
+M:3d3:MON(#.vampiric mist)
+D:A cloud of evil, sentient mist.
+I:DISPLAY(#,Blue)
+P:Copy:Vampire:Beastmaster
+P:Body:Vampire
+P:Weight:10
+
+N:#.xiclotlan:Xiclotlan
+I:LVL(25,60):RARITY(2)
+I:HP(625):AC(60):EXP(60)
+I:ATTR(RIDING|EMPTY_MIND)
+I:ALERT(150',Fairly Observant):MOVE(RAND_25|BASH)
+B:CRUSH(x2):HURT(3d4+8)
+B:BITE:HURT(3d2)
+I:RESIST(ELEC):IMMUNE(POIS)
+D:"...a metallically grey tree... about sixteen feet high with
+D:very thick cylindrical branches... cylinders further
+D:divided into six flat circular extensions... and from the top
+D:of what I had taken for a trunk rose a featureless oval... an
+D:orifice gaping at the top."
+I:DISPLAY(#,Light Dark):POS(CORPSE|GAIN_AC)
+P:Copy:Ent:Warrior
+P:Body:Tree
+P:Weight:400
+
+N:#.roper:Roper
+I:LVL(27,80):RARITY(5)
+I:SPEED(+5):HP(840):AC(60):EXP(235)
+I:ALIGN(Evil):ALERT(300',Ignores):MOVE(NEVER)
+B:CRUSH(x4):HURT(2d5+3):PARALYZE(25%)
+I:RESIST(ACID|FIRE|COLD|POIS|CONF):IMMUNE(SLEEP|FEAR)
+S:1_IN_5 | BA_FIRE | BA_ELEC | BA_POISON | HASTE | TRAPS | SHRIEK | PARALYZE | CONFUSE
+O:3d2+1:OBJ(GOLD)
+D:This creature look like a pillar of rock. However, a closer inspection reveals
+D:a glaring eye and powerful tentacles, which crush its prey and feed it to the
+D:creature's hungry mouth.
+I:DISPLAY(#,Light Dark):POS(GAIN_AC)
+P:Copy:Ent:Mauler
+P:Body:Tree
+P:Weight:400
+
+N:h.mind flayer:Mind flayer
+I:LVL(28,80):RARITY(1)
+I:HP(150):AC(60):EXP(200)
+I:ALIGN(Evil):ALERT(Fairly Observant):MOVE(OPEN|BASH)
+B:GAZE(x2):DAM(1d6+3):LOSE_INT(50%)
+I:RESIST(CONF):IMMUNE(SLEEP)
+S:1_IN_8 | BLIND | PARALYZE | SCARE | MIND_BLAST | BRAIN_SMASH | AMNESIA
+O:1d3:OBJ(*)
+M:10%:1d3:MON(h.mind flayer)
+D:A humanoid form with a gruesome head, tentacular mouth, and piercing
+D:eyes. Claws reach out for you and you feel a presence invade your mind.
+I:DISPLAY(h,Violet):POS(CORPSE|SEE_INVIS|TELEPATHY)
+P:Copy:Mindflayer:Mage
+P:Weight:150
+
+N:X.xorn:Xorn
+I:LVL(36,70):RARITY(2)
+I:HP(160):AC(80):EXP(400):EVOLVE(X.xaren, 4000)
+I:ATTR(EMPTY_MIND|COLD_BLOOD)
+I:ALERT(Fairly Observant):MOVE(DESTROY|PASSWALL)
+B:HIT(x4):HURT(1d6)
+I:RESIST(ELEC|FIRE|COLD|POIS|CONF):IMMUNE(SLEEP):VULN(DISINTEGRATE)
+D:A huge creature of the element Earth. Able to merge with its element, it
+D:has four huge arms protruding from its enormous torso.
+I:DISPLAY(X,Orange):POS(CORPSE|GAIN_AC)
+P:Copy:Kobold:Warrior
+P:Body:Xorn
+P:Weight:250
+
+N:X.xaren:X.xorn:Xaren
+I:LVL(40,70):RARITY(1)
+I:SPEED(+10):HP(320):AC(80):EXP(800)
+B:HIT(x4):HURT(3d4)
+D:It is a tougher relative of the Xorn. Its hide glitters with metal ores.
+I:COLOR(Yellow)
+
+N:#.weird fume:Weird fume
+I:LVL(40,70):RARITY(3)
+I:SPEED(+10):HP(35d10):AC(40):EXP(800)
+I:KIND(NONLIVING):ATTR(EMPTY_MIND)
+I:ALERT(1000',Ever Vigilant):MOVE(RAND_75|BASH|FLY)
+B:ENGULF(x2):CONFUSE(8d4)
+A:ELEC(2d3)
+I:RESIST(ELEC|FIRE|CONF|NEXUS|CHAOS):IMMUNE(SLEEP|FEAR|BLIND)
+S:FREQ_8 | BR_CHAOS | BR_NEXUS | BR_NUKE
+D:A swirling spiral of mist, constantly changing its appearance.
+I:DISPLAY(#,Violet,ATTR_MULTI|ATTR_ANY)
+P:Copy:Human:Beastmaster
+P:Weight:50
+
+N:#.shub-niggurath:Dark young of Shub-Niggurath
+I:LVL(43):RARITY(2)
+I:SPEED(+10):HP(1200):AC(75):EXP(5000)
+I:KIND(DEMON|NONLIVING|HORROR):ALIGN(Evil)
+I:ALERT(Inattentive):MOVE(OPEN|BASH|SWIM)
+B:CRUSH(x2):HURT(3d6+7)
+B:BITE(x2):HURT(1d6):LOSE_STR(50%)
+I:RESIST(FIRE|CONF|DARK|NETHER|TELE):IMMUNE(SLEEP):VULN(LIGHT)
+S:1_IN_9 | BLIND | CAUSE_2 | S_DEMON | HEAL
+O:1d2:OBJ(*)
+D:"Something black in the road, something that wasn't a tree.
+D:Something big and black and ropy, just squatting there, waiting,
+D:with ropy arms squirming and reaching... It came crawling up the
+D:hillside... and it was the black thing of my dreams... that black,
+D:ropy, slimy jelly tree-thing out of the woods. It crawled up and it
+D:flowed up on its hoofs and mouths and snaky arms."
+I:DISPLAY(#,Light Dark):POS(GAIN_AC)
+P:Copy:Ent:Mauler
+P:Body:Tree
+P:Weight:400
+
+N:..color:Color out of space
+I:LVL(43):RARITY(2)
+I:SPEED(+10):HP(1200):AC(100):EXP(8000)
+I:ALIGN(Evil):CAN(INVIS):ATTR(SMART|COLD_BLOOD)
+I:ALERT(Fairly Observant):MOVE(RAND_25|PASSWALL|FLY)
+B:TOUCH(x2):HURT(3d6+14):LOSE_ALL(50%)
+I:RESIST(BASE|POIS|CONF|NETHER):IMMUNE(SLEEP|STUN|BLIND)
+S:FREQ_5 | DRAIN_MANA | BR_DISENCHANT | BR_NETHER | TELE_SELF
+O:2d2+2:OBJ(*)
+D:"The shaft of phosphorescence from the well... was no longer shining
+D:out, it was pouring out; and as the shapeless stream of unplaceable
+D:color left the well it seemed to flow directly into the sky."
+I:DISPLAY(.,Violet,CHAR_CLEAR|ATTR_MULTI|ATTR_ANY)
+P:Copy:Ent:Beastmaster
+P:Weight:100
+
+N:P.Yibb-Tstll:Yibb-Tstll the Patient One
+I:LVL(46):RARITY(2):ALLOC(UNIQUE|NO_QUEST|ESCORT)
+I:SPEED(+10):HP(3025):AC(100):EXP(16000)
+I:KIND(HORROR):ALIGN(Evil):CAN(SPEAK|REGEN):ATTR(SMART)
+I:ALERT(300',Fairly Unseeing):MOVE(NEVER|FLY)
+B:TOUCH(x2):DAM(1d166):LOSE_ALL
+I:RESIST(BASE|POIS|NETHER|CHAOS)
+S:FREQ_15 | BR_NUKE | BR_NEXUS | BR_CHAOS | S_DEMON | DARKNESS | S_UNDEAD | ANIM_DEAD | TELE_TO
+O:6d2:OBJ(*, GOOD)
+M:3d9:MON(j.black)
+D:"There, about the pulsating body of the Ancient One, hugely
+D:winged reptilian creatures without faces cluttered and clutched
+D:at a multitude of blackly writhing, pendulous breasts! (Its eyes)
+D:moved quickly, independently -- sliding with vile viscosity over
+D:the whole rotten surface of Yib-Tstll's pulpy, glistening head!"
+I:DISPLAY(P,Light Dark):POS(GAIN_AC)
+P:Copy:Half-Giant:Mauler
+P:Body:Demonic Horror
+P:Weight:300
+
+N:#.Ahtu:Ahtu, Avatar of Nyarlathotep
+I:LVL(56):RARITY(3):ALLOC(UNIQUE)
+I:SPEED(+20):HP(5500):AC(120):EXP(22500)
+I:KIND(DEMON|NONLIVING|HORROR):ALIGN(Evil):CAN(SPEAK):ATTR(SMART)
+I:ALERT(300',Fairly Observant):MOVE(OPEN|BASH|PUSH|PICKUP)
+B:CRUSH(x2):HURT(6d13+49)
+B:CRUSH(x2):HURT(5d10+10):FIRE(3d10)
+I:RESIST(NETHER)
+S:1_IN_6 | BR_FIRE | S_DEMON | CAUSE_4 | BR_PLASMA | BR_NETHER | BRAIN_SMASH | S_UNDEAD | BA_DARK
+O:4d2:OBJ(*, GOOD)
+D:"Higher already than the giants of the forest ringing it, the
+D:fifty-foot-thick column... sprouted a ring of tendrils, ruddy and
+D:golden and glittering overall with inclusions of quartz."
+I:DISPLAY(#,Light Dark):POS(GAIN_AC)
+P:Copy:Ent:Mauler
+P:Body:Tree
+P:Weight:2000
+
+N:P.Hypnos:Hypnos, Lord of Sleep
+I:LVL(67):RARITY(2):ALLOC(UNIQUE)
+I:SPEED(+20):HP(5049):AC(150):EXP(36000)
+I:ALIGN(Evil):CAN(SPEAK):ATTR(MALE|SMART)
+I:ALERT(Fairly Observant):MOVE(FLY)
+B:TOUCH:DAM(2d25):LOSE_ALL
+B:GAZE:DAM(1d20):PARALYZE
+B:GAZE:DAM(1d20):TERRIFY
+B:GAZE:DAM(1d20):BLIND
+I:RESIST(ACID|FIRE|COLD|POIS|CONF|NEXUS|CHAOS|DISENCHANT|INERTIA):IMMUNE(SLEEP|SLOW)
+S:FREQ_30 | BR_NEXUS | BR_CHAOS | PARALYZE | SLOW | BR_INERTIA | BA_NUKE |
+S:MIND_BLAST | BRAIN_SMASH | CONFUSE | BLIND | TELE_TO | HEAL |
+S:TELE_OTHER | TELE_LEVEL | TELE_SELF | S_NIGHTMARE | DRAIN_MANA
+O:9d2:OBJ(*, GOOD)
+D:"Young with the youth that is outside time, and with a beauteous bearded face, curved,
+D:smiling lips, Olympian brow; and dense locks waving and poppy-crowned."
+I:DISPLAY(P,Light Green,ATTR_MULTI):POS(CORPSE|SEE_INVIS)
+P:Copy:Half-Titan:Chaos-Warrior
+P:Weight:700
+
+N:..Null:Null the Living Void
+I:LVL(72):RARITY(2):ALLOC(UNIQUE)
+I:SPEED(+10):HP(5000):AC(100):EXP(32500)
+I:KIND(NONLIVING|HORROR):ALIGN(Evil):DARK(3):CAN(REGEN):ATTR(SMART)
+I:ALERT(300',Fairly Unseeing):MOVE(PASSWALL|FLY)
+B:TOUCH:DAM(6d16):LOSE_ALL
+B:TOUCH:VAMP(6d16)
+B:TOUCH:DAM(6d16):DRAIN_CHARGES
+B:TOUCH:DRAIN_MANA(6d16)
+I:RESIST(ACID|COLD|CONF|DARK|NETHER):IMMUNE(SLEEP|SLOW|BLIND|STUN)
+S:1_IN_5 | BR_NETHER | BRAIN_SMASH | SCARE | S_UNDEAD | S_HI_UNDEAD | DRAIN_MANA | HEAL | ANIM_DEAD
+O:6d2:OBJ(*, GOOD)
+D:A black hole in the fabric of reality. It simply is not there.
+I:DISPLAY(.,Dark)
+P:Copy:Half-Titan:Beastmaster
+P:Weight:100
+
+N:Y.Ithaqua:Ithaqua the Windwalker
+I:LVL(82):RARITY(2):ALLOC(UNIQUE|ESCORT)
+I:SPEED(+30):HP(5500):AC(125):EXP(50000)
+I:KIND(DEMON|NONLIVING|HORROR):ALIGN(Chaotic):CAN(INVIS|SPEAK)
+I:ALERT(400',Fairly Observant):MOVE(OPEN|BASH|FLY|CLEARWEB)
+B:CLAW(x2):HURT(4d12+25):COLD(4d12)
+B:CRUSH(x2):HURT(5d12+45)
+A:COLD(4d5):ELEC(4d5)
+I:RESIST(BASE|POIS|CONF|NETHER):IMMUNE(SLEEP|SLOW|TELE)
+S:1_IN_3 | BO_ELEC(8d8+54) | BA_ELEC(1d246+16) | PSY_SPEAR(1d164+150) |
+S:BO_MANA | SCARE | BR_COLD | S_HI_DEMON | S_HI_UNDEAD | S_KIN
+S:MIND_BLAST | CAUSE_4 | BA_CHAOS(10d10+164) | BA_WATER(1d164+50) |
+O:4d2:OBJ(*, GOOD)
+M:3d5:MON(ELDRITCH_HORROR)
+D:The Wendigo, moving so fast that you can see little except two
+D:glowing eyes burning with hatred. "The stars had been blotted out...
+D:the great cloud which had obscured the the sky looked curiously
+D:like the outline of a great man. And... where the top of
+D:the cloud must have been, where the head of the thing should have
+D:been, there were two gleaming stars, burning bright -- like eyes!"
+I:DISPLAY(Y,Light Blue):POS(GAIN_AC|SEE_INVIS)
+P:Copy:Half-Titan:Beastmaster
+P:Speed:+15
+P:Weight:200
+
+N:P.Nodens:Nodens, Lord of the Great Abyss
+I:LVL(92):RARITY(3):ALLOC(UNIQUE)
+I:SPEED(+20):HP(7425):AC(100):EXP(100000)
+I:ALIGN(Lawful):CAN(SPEAK|REGEN):ATTR(MALE|SMART)
+I:ALERT(1000',Fairly Unseeing):MOVE(OPEN|BASH|PASSWALL|FLY)
+B:HIT(x2):HURT(1d66+33)
+I:RESIST(BASE|POIS|CONF|NETHER|NEXUS|WATER):IMMUNE(SLEEP|SLOW|BLIND)
+S:FREQ_100 | PSY_SPEAR(1d184+150) | MANA_STORM(10d10+400) | BO_MANA | HAND_DOOM
+S:TELE_OTHER | TELE_TO | TELE_LEVEL | TELE_SELF | HEAL | HASTE
+S:S_MONSTER | S_ANGEL | S_UNIQUE | DISPEL_MAGIC | ANTI_MAGIC
+O:4d2+1:OBJ(*, GREAT):DROP_MAGE
+D:The hoary Lord of the Great Abyss seems a wizened man, but appearances can be deceiving.
+I:DISPLAY(P,White):POS(TELEPATHY)
+P:Copy:Mindflayer:High-Mage
+P:Stats:0:2:0:0:-2:0
+P:Speed:+10
+P:Weight:120
+
+N:P.Morgoth:Morgoth, Lord of Darkness
+I:LVL(100):RARITY(3):ALLOC(D_ANGBAND|FORCE_DEPTH|NO_SUMMON|UNIQUE|GUARDIAN)
+I:SPEED(+30):HP(30000):AC(170):EXP(200000)
+I:ALIGN(Chaotic):DARK(3):CAN(FEAR|REFLECT|REGEN):ATTR(MALE|IM_ILLUSION|SMART)
+I:ALERT(1000',Ever Vigilant):MOVE(TUNNEL|PUSH)
+B:HIT(x2):SHATTER(10d10+50):STUN(5d5, 25%)
+B:HIT:HURT(10d10+50):LOSE_ALL
+B:TOUCH:DRAIN_CHARGES:TERRIFY
+A:DARK(4d6):ICE(3d6, 25%)
+I:RESIST(BASE|POIS|CONF|NETHER):IMMUNE(DARK|SLEEP|SLOW|BLIND|TELE)
+S:FREQ_30 | BRAIN_SMASH(200) | DISPEL_MAGIC | ANTI_MAGIC | TELE_TO
+S:MANA_STORM | BA_DARK | BO_MANA | BA_NETHER(10d10+450) | ANIM_DEAD
+S:S_MONSTER(5) | S_UNIQUE(3) | S_HI_UNDEAD(5) | S_HI_DRAGON(4)
+O:10d2:OBJ(*, GREAT)
+O:ART(\.Grond)
+D:He is the Master of the Pits of Angband. His figure is like a black mountain crowned with
+D:Lightning. He rages with everlasting anger, his body scarred by Fingolfin's eight mighty
+D:wounds. He can never rest from his pain, but seeks forever to dominate all that is light
+D:and good in the world. He is the origin of man's fear of darkness and created many foul
+D:creatures with his evil powers. Orcs, Dragons, and Trolls are his most foul corruptions,
+D:causing much pain and suffering in the world to please him. His disgusting visage, twisted
+D:with evil, is crowned with iron, the two remaining Silmarils forever burning him. Grond,
+D:the mighty Hammer of the Underworld, cries defiance as he strides towards you to crush you
+D:to a pulp!
+I:DISPLAY(P,Light Dark):POS(GAIN_AC|SEE_INVIS|HOLD_LIFE|TELEPATHY|SUST_ALL)
+P:Copy:Half-Giant:Mauler
+P:Life:120
+P:Speed:+15
+P:Weight:2000
+
+N:..behinder:Behinder
+I:LVL(30,70):RARITY(100):WILD(WOOD|MOUNTAIN)
+I:SPEED(+15):HP(30d20):AC(45):EXP(900)
+I:KIND(ANIMAL|HORROR):CAN(INVIS):ATTR(SMART|COLD_BLOOD|EMPTY_MIND)
+I:ALERT(100',Inattentive):MOVE(OPEN|SWIM)
+B:TOUCH:DAM(5d5):TERRIFY
+B:BITE:HURT(4d4+10)
+I:RESIST(CONF):IMMUNE(SLEEP|BLIND|FEAR)
+D:"The Behinder flung itself on his shoulders. Then I knew why
+D:nobody's supposed to see one. I wish I hadn't. To this day I
+D:can see it, plain as a fence at noon, and forever I will be
+D:able to see it."
+I:DISPLAY(.,White,CHAR_CLEAR|ATTR_CLEAR)
+P:Copy:Human:Warrior
+P:Weight:50
+
+N:#.noxious fume:Noxious fume
+I:LVL(20,50):RARITY(4):WILD(VOLCANO|SWAMP)
+I:SPEED(-20):HP(3d3):AC(37):EXP(15)
+I:KIND(NONLIVING):CAN(INVIS|MULTIPLY):ATTR(COLD_BLOOD|EMPTY_MIND)
+I:ALERT(Fairly Unseeing):MOVE(RAND_75|TRAMPLE|PASSWALL|FLY|SWIM)
+B:TOUCH:POISON(3d3)
+I:RESIST(BASE|POIS|CONF):IMMUNE(SLEEP|FEAR|STUN|BLIND)
+S:MULTIPLY
+D:It is a swirling cloud of yellowish gas.
+I:DISPLAY(#,Yellow)
+P:Copy:Yeek:Beastmaster
+P:Weight:50
+
+N:P.djinni:Djinni
+I:LVL(40):RARITY(3)
+I:SPEED(+20):HP(70d10):AC(90):EXP(900)
+I:ALIGN(Good):ATTR(WEIRD_MIND)
+I:ALERT(300',Fairly Observant):MOVE(OPEN|BASH|PUSH|PICKUP|FLY)
+B:HIT(x2):HURT(8d4)
+I:RESIST(ELEC|CONF):IMMUNE(SLEEP)
+S:1_IN_6 | BO_ELEC | MISSILE | BLINK | S_MONSTER(1) | BA_ELEC
+O:60%:OBJ(*$)
+D:Supported by a whirlwind, the djinni turns to face you.
+I:DISPLAY(P,Blue):POS(SUST_STR)
+P:Copy:Half-Giant:Mauler
+P:Weight:300
+
+N:h.Druaga:Druaga
+I:LVL(59):RARITY(2):ALLOC(UNIQUE)
+I:SPEED(+10):HP(4500):AC(120):EXP(28000)
+I:ALIGN(Evil):ALERT(300',Fairly Unseeing):MOVE(OPEN)
+B:BUTT:HURT(5d10+25):CONFUSE
+B:HIT(x2):HURT(3d10+20):POISON(3d10)
+B:TOUCH:DISENCHANT(6d6)
+I:RESIST(FIRE|CONF|NETHER|PLASMA):IMMUNE(SLEEP)
+S:FREQ_25 | S_DEMON | BA_CHAOS | BO_PLASMA | BR_FIRE | BR_PLASMA
+O:4d2:OBJ(*,GOOD)
+I:DISPLAY(h,Violet)
+P:Copy:Dark-Elf:Chaos-Warrior
+P:Weight:170
+
+N:P.Botei:p.base:Botei-Building, the Emperor
+I:LVL(36):RARITY(2):ALLOC(UNIQUE)
+I:SPEED(+10):HP(1200):AC(130):EXP(2500)
+I:CAN(SPEAK|REFLECT|REGEN):ALERT(250',Unseeing):MOVE(PUSH)
+B:PUNCH(x2):HURT(2d12+12):STUN(2d3,20%)
+B:PUNCH:HURT(6d6):BLIND
+B:KICK:HURT(7d7):STUN(2d3,20%)
+S:FREQ_10 | BR_SHARDS | TELE_TO
+O:1d2+1:OBJ(*,GOOD)
+I:DISPLAY(P,Light Umber)
+P:Copy:Half-Giant:Mystic
+P:Body:Monk
+P:Speed:+5
+P:Weight:300
+
+# Appearance Only (mon->apparent_race). cf place_monster_aux and place_monster_one (PM_KAGE)
+N:N.shadower:Shadower
+I:LVL(1):HP(1)
+D:Nobody knows its true character.
+I:DISPLAY(N,Light Dark)
+P:Class:Warrior
+P:Weight:10
+
+N:P.dao:Dao
+I:LVL(40):RARITY(6)
+I:SPEED(+10):HP(70d10):AC(70):EXP(900)
+I:ALIGN(Evil):ALERT(300',Fairly Observant):MOVE(OPEN|BASH|PICKUP|FLY)
+B:HIT(x2):HURT(5d4):ACID(3d4)
+I:RESIST(ACID|CONF|SHARDS|DISENCHANT):IMMUNE(SLEEP)
+S:1_IN_6 | BO_ACID | BO_PLASMA | BA_ACID
+O:60%:OBJ(*$)
+D:A Dao is a genie from the elemental plane of Earth.
+I:DISPLAY(P,Orange):POS(SUST_STR)
+P:Copy:Half-Giant:Mauler
+P:Weight:250
+
+N:P.marid:Marid
+I:LVL(45):RARITY(6)
+I:SPEED(+10):HP(75d15):AC(75):EXP(2000)
+I:ATTR(WEIRD_MIND)
+I:ALERT(300',Fairly Observant):MOVE(OPEN|BASH|PUSH|SWIM|FLY)
+B:HIT(x2):HURT(6d6+10)
+I:RESIST(COLD|CONF|WATER):IMMUNE(SLEEP)
+S:1_IN_6 | BO_WATER | BA_WATER | BLINK | S_MONSTER(1)
+O:60%:OBJ(*$)
+D:The marid are said to be born of the ocean,
+D:with currents as their muscles and pearls as their teeth.
+I:DISPLAY(P,Green):POS(SUST_STR)
+P:Copy:Half-Giant:Mauler
+P:Weight:250
+
+N:{.taepodong:TaepoDong
+I:LVL(50):RARITY(10)
+I:SPEED(+10):HP(98):AC(80):EXP(200)
+I:KIND(NONLIVING):CAN(REFLECT):ATTR(COLD_BLOOD|EMPTY_MIND)
+I:ALERT(100',Fairly Observant):MOVE(BASH)
+B:EXPLODE:SHARDS(75d2)
+I:RESIST(ELEC|FIRE|COLD|POIS|CONF|TELE):IMMUNE(SLEEP|FEAR|BLIND)
+D:A shining machine of death and destruction.
+I:DISPLAY({,Light White)
+P:Copy:Half-Titan:Mauler
+P:Weight:20
+
+N:h.kutar:Kutar
+I:LVL(5,30):RARITY(4):WILD(WOOD)
+I:HP(3d5):AC(10):EXP(20)
+I:ALERT(100',Fairly Observant):MOVE(OPEN|BASH)
+B:HIT(x2):HURT(1d4+4):EAT_FOOD(50%)
+O:60%:OBJ(*$)
+D:It is a biped living thing like the bear. It pounces on you expressionlessly.
+I:DISPLAY(h,Umber):POS(CORPSE)
+P:Copy:Kutar:Wild-Talent
+P:Weight:90
+
+N:h.dimensional shambler:Dimensional shambler
+I:LVL(29,70):RARITY(6)
+I:SPEED(+10):HP(400):AC(68):EXP(400)
+I:KIND(NONLIVING):ALIGN(Good):ATTR(SMART)
+I:ALERT(300',Ignores):MOVE(OPEN|BASH|PICKUP)
+B:HIT(x3):HURT(1d5+5)
+I:RESIST(FIRE|COLD|POIS|CONF|TELE):IMMUNE(SLEEP|FEAR)
+S:1_IN_3 | HEAL | HASTE | BLIND | CONFUSE | SCARE | TELE_SELF | BLINK
+O:1d2+1:OBJ(*)
+D:A shabby humanoid with a wrinkled skin. It seems to shift
+D:in and out of existence as you watch.
+I:DISPLAY(h,Light Blue)
+P:Copy:Dark-Elf:Warrior-Mage
+P:Weight:120
+
+# vim: filetype=ri :

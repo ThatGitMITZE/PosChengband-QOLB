@@ -1,0 +1,117 @@
+# File: q_info.txt
+#
+# Do not modify this file unless you know exactly what you are doing
+# and you wish to risk possible system crashes and broken savefiles.
+#
+
+########################################################################
+# PosChengband Quests (cf quest.h and quest.c)
+#
+# N:id:lvl:name
+# T:type flags
+# W:where to find quest?
+# G:goal of quest?
+# F:quest file with map, descriptions and rewards
+#
+# Use lower case for all string lookups
+########################################################################
+
+?:0
+# Note: Quest files need their MON directives fixed. Poschengband 7.1
+# and later is not currently using town quests, so I've removed them from q_info.
+
+N:1:5:The Thieves' Hideout
+T:TOWN | GENERATE
+F:q_thieves.txt
+
+N:2:15:The Sewer
+T:TOWN | GENERATE
+F:q_sewer.txt
+
+N:3:25:The Logrus Master
+T:TOWN | GENERATE
+G:KILL(p.logrus master)
+F:q_logrus_master.txt
+
+N:5:35:The Barrow Downs
+T:TOWN | GENERATE
+F:q_barrow_downs.txt
+
+N:6:5:The Warg Problem
+T:TOWN
+W:Stronghold
+G:KILL(C.warg, 16)
+F:q_wargs.txt
+
+N:7:70:Eric's Stronghold
+T:TOWN | GENERATE
+G:KILL(p.Eric)
+F:q_eric.txt
+
+N:8:40:Assault on Montsalvat
+T:TOWN | GENERATE
+F:q_montsalvat.txt
+
+N:9:15:Doom Quest I
+T:TOWN | GENERATE
+F:q_doom1.txt
+
+N:10:25:Vapor Quest
+T:TOWN | GENERATE
+F:q_vapor.txt
+
+N:11:55:Doom Quest II
+T:TOWN | GENERATE
+F:q_doom2.txt
+
+N:12:15:The Orc Camp
+T:TOWN | GENERATE
+F:q_orcs.txt
+
+N:13:65:The Spawning Pits
+T:TOWN | GENERATE
+F:q_spawning_pits.txt
+
+N:14:45:The Haunted House
+T:TOWN | GENERATE
+F:q_haunted_house.txt
+
+N:15:50:The Killing Fields
+T:TOWN | GENERATE
+G:KILL(H.maulotaur)
+F:q_killing_fields.txt
+
+N:16:50:The Old Castle
+T:TOWN | GENERATE
+F:q_old_castle.txt
+
+N:17:70:The Royal Crypt
+T:TOWN | GENERATE
+G:KILL(L.archlich, 5)
+F:q_crypt.txt
+
+N:18:25:Tengu and Death Swords
+T:TOWN | GENERATE
+F:q_tengu_death_swords.txt
+
+N:19:25:The Mimic's Treasure
+T:TOWN | GENERATE
+F:q_mimics_treasure.txt
+
+N:20:22:Old Man Willow Quest
+T:TOWN | GENERATE
+F:q_old_man_willow.txt
+
+N:21:25:The Dark Elven Lords
+T:TOWN | GENERATE
+F:q_dark_elves.txt
+
+N:22:45:The Cloning Pits
+T:TOWN | GENERATE
+F:q_cloning_pits.txt
+
+N:23:45:The Renegade Sorcerer
+T:TOWN | GENERATE
+F:q_sorcerer.txt
+
+# vim: filetype=qi :

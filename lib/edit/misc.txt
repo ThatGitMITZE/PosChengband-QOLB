@@ -1,0 +1,13 @@
+# File: misc.txt
+
+# Maximum number of items in k_info.txt
+K:750
+
+# Maximum number of terrain features in f_info.txt
+F:255
+
+# Maximum number of artifacts in a_info.txt
+A:350
+
+# Maximum number of ego-items in e_info.txt
+E:500
