@@ -1,0 +1,30 @@
+<color:y>PosChengband <$:version></color><style:screenshot>
+You found a trap! You hit a teleport trap!                                      
+                                                                    LEVEL <color:G>    50</color>
+                                                                    EXP <color:G>********</color>
+       ###                                                          AU  <color:G>   6.78M</color>
+######## ########                                                   <color:o>/</color><color:s>)</color><color:U>}~</color><color:g>==</color><color:y>"*</color><color:s>[</color><color:g>(</color><color:y>]</color><color:U>]</color>
+                ########################             ############## STR!: <color:G>18/***</color>
+                                       #             #              INT!: <color:G> 18/80</color>
+                ###################### ####          # ############ WIS!: <color:G>18/110</color>
+########<color:U>+</color>#<color:U>+</color>######                    #    #######    # #            DEX!: <color:G>18/160</color>
+     #     # #                       ####       ###### ###          CON!: <color:G>18/190</color>
+     # # ### #                          #######          #          CHR!: <color:G>18/110</color>
+     # # # # #                                ############          AC     <color:G>  177</color>
+######## ###<color:U>+</color>##         ######<color:y>#######</color>                               HP <color:G>1013</color>/<color:G>1013</color>
+              #         #     <color:y>...</color>@<color:y>..#</color>                                           
+              #         # <color:U>#########</color><color:y>.#</color>                                           
+              ########### <color:U>####</color><color:v>*</color><color:U>####</color> #                               @ <color:G>100%</color>      
+              <color:U>+</color>         <color:U>+</color> <color:U>#</color>       <color:U>#</color> #                               <color:U>,</color> <color:o> 23%</color>      
+              ########### <color:U>#</color>       <color:U>#</color> ####                                        
+              #         # <color:U>####</color><color:R>'</color><color:U>####</color>    ########                                 
+              #         #           #  >##    #                                 
+###### ########         ###### ###### #### ## #####################             
+     ###                     # # # ##      ##                       <color:G>Fast (+39)</color>  
+                             # ### ## #######  ####################             
+                             #     ####     ####                                
+                             #######                                            
+                                                                                
+<color:s>The Dark Castle: L40</color>                                                            
+</style>
+

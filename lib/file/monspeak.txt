@@ -1,0 +1,698 @@
+# This is the file for allowing uniques to speak their "own" lines.
+# Deleting this file will have no real effect on the game.  Modifying it may
+# cause STRANGE unique lines to come up if the format's wrong, but shouldn't
+# crash anything.  The format goes like so:
+# 
+# N:<mon_race->id>
+# says line 1
+# says line 2
+# says line 3
+#
+# Empty line is separater of blocks.
+#
+# A '*' in the number field is a wildcard and applies to any monster.
+# It should only be placed at the end of the file, since all 'N:' lines
+# after it will be ignored.
+#
+# Two or more monsters can share lines; just put their N: lines in a
+# contiguous block.
+#
+# Entries by Matt Graham, Andrew Hill, and Topi Ylinen
+
+N:h.Maggot
+seems sad about something.
+asks if you have seen his dogs.
+tells you to get off his land.
+says, "Grip! Fang! Wolf! Come on, lads!"
+says, "They won't harm you -- not unless I tell 'em to!"
+says, "Here, Grip! Fang! Heel!"
+exclaims, "Well, if that isn't queerer than ever?"
+asks, "Were you coming to visit me?"
+says, "I'll not light my lanterns till I turn for home."
+says, "I see you are in some kind of trouble."
+yells, "Hallo there!"
+says, "It's been a queer day, and no mistake."
+
+N:C.Grip
+N:C.Wolf
+N:C.Fang
+chases its tail.
+barks loudly.
+froths at the mouth.
+wags its tail.
+rolls over.
+growls.
+
+N:h.Smeagol
+mutters, 'My precious, wheres my precious?'
+screams, 'Nasty Hobbitsisisisis...'
+says, 'Come on, quickly, follow Smeagol'
+says, 'Nasty Bagginis, stole my precious.'
+says, 'She will kill them oh yes she will precious.'
+says, 'Whats has its got in its pocketses, hmmm?'
+sniggers.
+grovels.
+picks his nose.
+pines for his precious.
+searches his pockets.
+eats some slimy creatures.
+shouts, 'No Master Hobbitsisisisis!'
+cries, 'The ring was ours for agesisisisis!'
+says, 'Smeagol sneeking! ME! Shneekingsisis!'
+says, 'Every way is guarded, silly foolsis!'
+whines, 'Weees wants some fishises.'
+whimpers, 'We've lost itses we have.'
+says, 'He'll eastus all the world if he getsitses it.'
+says, 'No food, no rest; Smeagol a SNEAK!'
+says, 'What a dainty little dish you will be for her.'
+says, 'Hobbitses always SOOOO Polite.'
+screams, 'Stop, Thief!'
+says, 'Makeses him drop his weapon precious.'
+grovels, 'He has only four fingers on the black hand.'
+growls, 'Not nice Hobbits, not sensible!'
+says, 'If you findesis it, give it us back.'
+
+N:k.Mughash
+says, 'I may be a kobold, but I'll kick your arse!'
+says, 'Feel my wrath, fool!'
+says, 'Death and destruction make me happy!'
+snickers evilly.
+
+N:p.Wormtongue
+whines and sniggers.
+whispers nasty things.
+says, 'I'll slaughter you slowly...'
+says, 'Lathspell I name you, Ill-news; and Ill-news is an ill guest they say.'
+says, 'Forbid his staff!'
+yells, 'You lie!'
+says, 'Let me go, let me go!  I know the way!'
+says, 'My messages are useless now!'
+says, 'No no!'
+hisses, 'You told me to; you made me do it!'
+
+N:p.Robin Hood
+is looking at your wallet with a wishful eyes.
+says, 'You look like Nottingham's man to me!'
+says, 'I bet I can shoot better than you...'
+says, 'Give 'til it hurts!'
+says, 'Don't force me to put an arrow in your skull...'
+says, 'Kevin Costner has soiled my name!'
+
+N:y.Orfax
+N:y.Boldor
+wonders aloud about your sexual orientation.
+spouts torrents of obscenities.
+shouts, 'YEEK! YEEK! YEEK!'
+says, 'I'll teach you to respect Yeeks!
+says, 'Feel lucky, punk?'
+
+N:o.Lagduf
+N:o.Grishnakh
+says, 'Saruman is a fool, and a dirty treacherous fool.'
+says, 'I left a fool.'
+yells, 'Nazgul, Nazgul!'
+says, 'Fine leadership! I hope the great Ugluk will lead us out again.'
+hisses, 'My dear tender little fools.'
+says, 'Well, my little ones! Enjoying your nice rest?'
+snarls, 'Have you got it -- either of you?'
+
+N:o.Golfimbul
+N:o.Ufthak
+N:o.Shagrat
+N:o.Gorbag
+N:o.Bolg
+N:o.Ugluk
+N:o.Lugdush
+N:o.Azog
+fingers his blade and grins evilly.
+snickers, 'Now, I strike a blow for *our* side!'
+says, 'Orcs don't get no respect... I'm gonna change that!'
+calls your mother nasty names.
+says, 'I'll bet your innards would taste real sweet...'
+belches and spits.
+scratches his armpits.
+says, 'I love the smell of fresh blood.'
+says, 'Yeeha! Another idiot to slaughter!'
+hawks a loogie in your direction.
+farts thunderously.
+wonders aloud how many experience points you're worth.
+says, 'I love being psychotic!'
+says, 'My brain's on fire with the feeling to kill!'
+says, 'I shall torture you slowly.'
+calls you a scum-sucking pig-dog.
+says, 'I shall have my way with your women!'
+says, 'You're not so tough, buttmunch!'
+says, 'Heh-heh, heh-heh, killing people is cool.'
+
+N:h.Mime
+says, 'Get away! This spot is mine!'
+says, 'I will soon close your eyes in eternal sleep.'
+says, 'I'll mess up all your stuff!'
+says, 'Give me the Rheingold, or die!'
+cries, 'You must pay me... with your life!'
+grins.
+says, 'Maybe I will just hack your head off.'
+
+N:h.Hagen
+says, 'Did you hear what the ravens said? Revenge, that is what they cry!'
+shouts, 'Hoiho! Hoiho! To arms! To arms!'
+grumbles, 'I hate the happy, and I am never glad.'
+cries, 'Keep away from the Ring!'
+boasts, 'My spear will certainly cut down the wrongful one.'
+cries, 'There! There shall my spear strike!'
+grins, 'You will die soon, handsome hero!'
+states, 'I am but avenging perjury.'
+shouts, 'Give the Ring here!'
+shouts, 'Hoiho! Hoiho-hoho!'
+
+N:h.Alberich
+says, 'I'll mess up all your stuff!'
+says, 'Give me the Rheingold, or die!'
+states, 'As I have renounced love, all who live shall soon renounce it!'
+laughs insanely.
+asks, 'Did you hear it? The nibelung hordes are rising from the depths!'
+laughs, 'Ha ha ha ha! Beware!'
+says, 'Beware, fool! Beware!'
+says, 'Envy led you here, pitiful rogue!'
+boasts, 'I dauntlessly defy everyone, everyone!'
+yells, 'Tremble, on your knees before the master of the Ring.'
+yells, 'Tremble with terror, abject throng!'
+says, 'I am watching you everywhere, expect me where you do not perceive me!'
+says, 'Feel my wrath, idle rascal!'
+says, 'I have discovered you, you stupid thief!'
+says, 'Are you still not afraid? You should be!'
+says, 'I should really be shimmering!'
+
+#This next may be unnecessarily evil... :-]
+N:..It
+says, 'Nyah, nyah, betcha can't find me!'
+says, 'Come get some!'
+magically summons mighty undead opponents!
+chuckles evilly.
+magically summons Cyberdemons!
+summons special opponents!
+concentrates on its wounds.
+concentrates on its body. It starts moving faster.
+teleports away.
+dies.  You see a longsword (5d5).
+dies. You see a Stick (1d77).
+
+N:z.Kharis
+says, 'Open the gates of my hell, I will strike from the grave!'
+curses you.
+
+N:T.Bert
+N:T.Bill
+N:T.Tom
+complains, 'What's a burrahobbit got to do with my pocket, anyways?'
+rejoices, 'No more roast mutton! Roast adventurer today!'
+says, 'That'll teach yer!'
+says, 'I won't take that from you!'
+
+N:p.Ishikawa
+says, 'Zantetsuken is sharp this night. '
+mumbles, 'Sigh..Another trifling thing I've cut....'
+buttons his lips, '.....'
+
+N:P.Fasolt
+grumbles, 'Stop, greedy one! Leave something for me!'
+shouts, 'Back, over-bold one!'
+whines, 'You swindler, do you seek to vilify me?'
+
+N:p.Jurt
+shouts, 'All your fault!'
+shouts, 'Only your death will set things right!'
+says, 'Don't call me clumsy!'
+fingers the stump that was his left ear.
+
+N:p.Borel
+says, 'I am Borel, Duke of Hendrake, Master of Arms of the Ways of Hendrake.'
+says, 'You smile at your own cowardice? Stand and fight, bastard!'
+says, 'You aren't a caitiff that throws a cloak?!'
+says, 'I do not want it said that I took unfair advantage of you when I killed you.'
+says, 'Now we shall resolve a matter which has long troubled me.'
+cries, 'Coward! Is this the great warrior of whom I have heard so much?'
+
+N:p.Mandor
+enjoys espresso coffee between battle.
+says, 'My slaves fight with you.'
+says, 'Excuse me, I have no time to continue a small fight.'
+says, 'It is a great pleasure to fight with such a worthy opponent as you.'
+
+N:n.Jasra
+says, 'I will turn you into a coatrack.'
+says, 'I'm a master of the Keep of the Four Worlds!'
+
+N:U.Strygalldwir
+says, 'Order will crumble.'
+says, 'Obey the power of chaos!'
+
+N:s.Fire
+N:z.Mortis
+N:W.Fear
+N:W.Death
+hisses, 'Thisssss dungeon issss guilty.'
+hisses, 'Your crime isssss life.'
+hisses, 'The sssentencce isss death!'
+hisses, 'Your crime issss life. The sssentencce isss death.'
+
+N:p.Rinaldo
+says, 'I am Rinaldo I, Kashfan King and B.S. in Business Management, UC Berkeley.'
+says, 'Freezer? Glad you asked! A box to store your body!'
+says, 'If you buy a Grand-D machine, I'll throw Werewindle into the bargain.'
+has an eye to stick you with a burial set.
+says, 'Sorry but I kill you.'
+says, 'Can I get you a chicken? Maybe some white mice and aluminum foil?'
+
+N:p.Jack
+says, 'Be made to realize my darkness hold.'
+says, 'Power of shadow is infinite.'
+says, 'With the Key of Kolwynia, I am invincible!'
+says, 'Soul? What is it of use to?'
+casts Light Speed.
+
+N:j.shoggoth
+barrels towards you horrifyingly.
+wails, 'Tekeli-li!  Tekeli-li!'
+
+N:D.Smaug
+speaks, 'I smell you and I feel your air. I hear your breath. Come along!'
+says, 'If you get off alive, you will be lucky.'
+grimaces.
+laughs with a devastating sound which shakes the ground.
+asks, 'Where are those who dare approach me?'
+gloats, 'I am old and strong, strong, strong.'
+boasts, 'My armour is like tenfold shields, no blade can pierce me.'
+boasts, 'My teeth are swords, my claws are spears, my breath is death.'
+
+N:D.Fafner
+says, 'You will make a fine meal.'
+says, 'I wanted a drink, now I have also found food.'
+says, 'My fangs are not for chattering, soon you will feel them.'
+says, 'My throat is well made to gulp you down.'
+growls, 'Come here, young braggart.'
+
+N:D.Glaurung
+N:D.Ancalagon
+says, 'You cannot avoid the ballyhack.'
+says, 'A mere mortal, Be burned to the ground by my fire.'
+
+N:A.Uriel
+N:A.Azriel
+N:A.Raphael
+says, 'Repent, evildoer!'
+says, 'My righteousness shall cleanse you!'
+says, 'Don't EVER steal from the collection plate!'
+says, 'God may love you, but *I* don't!'
+says, 'I shall smite thee with extreme prejudice!'
+says, 'Hope you like eternal damnation!'
+says, 'Verily, it is too late for thee.'
+
+
+N:p.Saruman
+says, 'I gave you the chance of aiding me willingly, but you have elected the way of pain.'
+says, 'Against the power of Mordor there can be no victory.'
+says, 'Do you know how the Orcs first came into being? They were elves once ...'
+says, 'Time? What time do you think we have?'
+says, 'The hour is later than you think. Sauron's forces are already moving. The Nine have left Minas Morgul.'
+says, 'Moria... You fear to go into those mines. The dwarves delved too greedily and too deep.'
+says, 'There will be no dawn for men.'
+
+N:p.Gandalf
+says, 'I am a Wielder of the Flame of Anor, you cannot pass.'
+says, 'The dark fire will not avail you, Flame of Udun.'
+says, 'Always remember ... the Ring is trying to get back to its master. It wants to be found.'
+says, 'Many that live deserve death. Some that die deserve life.'
+says, 'There is only one Lord of the Ring, only one who can bend it to his will. And he does not share power.'
+says, 'There are older and fouler things than Orcs in the deep places of the world.'
+
+N:p.Brand
+says, 'I don't endure your sabotaging my plan!'
+says, 'You dare to oppose Amber?'
+
+N:p.Bleys
+N:p.Caine
+says, 'You dare to oppose Amber?'
+says, 'Who is Your malik? Eric? Corwin?'
+says, 'To barge into our blood feud is to die!'
+
+N:p.Fiona
+says, 'You should not think me easy to deal with.'
+says, 'You dare to oppose Amber?'
+smiles diabolic.
+dances apocalyptic.
+
+N:p.Julian
+belows a horn in a loud voice.
+says, 'This Haul offers resistance!'
+says, 'You'll become a good mounting'
+
+N:p.Gerard
+rushes toward you wordlessly.
+
+N:p.Eric
+says, 'I'm going to make you to have the same problem of Corwin.'
+says, 'Curse your daffiness that you make an enemy of a Lord of Amber.'
+says, 'It's true, that uneasy-lies-the-head bit.'
+
+N:p.Corwin
+says, 'I teach you bite of Grayswandir.'
+throws his cloak.
+says, 'Sorry but I have no time to continue a small fight like this.'
+says, 'death and dreck'
+says, 'This isn't exactly the Olympic Games.'
+
+N:p.Benedict
+says, 'Back Down. This situation only results in my victory, I know.'
+says, 'I praise your bravery. But take good care of your life.'
+says, 'It's unlucky for you to see me.'
+
+N:P.Surtur
+says, 'You cannot get "Orb of Destiny" even if you bring me down into the dust.'
+says, 'Burn out! And turn to dust!'
+says, 'The level 14 valkyrie who came before was storonger than you!'
+says, 'The level 14 samurai who came before was fastorer than you!'
+says, 'Whose idea was Sokoban???'
+
+N:j.Ubbo-Sathla
+N:R.Zoth-Ommog
+N:P.Yibb-Tstll
+N:j.Eihort
+N:L.King
+N:H.Hastur
+N:j.Nyogtha
+N:#.Ahtu
+N:l.Glaaki
+N:S.Rhan-Tegoth
+N:r.Tsathoggua
+N:H.Y'golonac
+N:e.Cyaegha
+N:J.Abhoth
+N:e.Shuma-Gorath
+N:j.Yog-Sothoth
+N:U.Shub-Niggurath
+N:P.Nodens
+N:U.Nyarlathotep
+N:U.Cthulhu
+slurps and gibbers disgustingly.
+shrieks fit to wake the dead.
+oozes nasty, glistening slime all over the dungeon.
+farts thunderously.
+lets off a mind-numbing stench.
+howls, 'Tekeli-li!  Tekeli-li!'
+makes a chilling slithering sound.
+howls, 'The OTHER GODS will feast on your brain!'
+hisses, 'I'll feed you to the Hounds of Tindalos...'
+hisses, 'Randolph Carter got off easy; you won't!'
+seethes and fumes sickeningly.
+hisses, 'I'll send you beyond Known Space to Azathoth!'
+waves nasty-looking tentacles about.
+picks its teeth with the bones of former players.
+opens your mind to a vista of nameless cosmic horror!
+opens your mind to a vista of endless 'Three's Company' reruns!
+snorts and slobbers with glee.
+
+N:C.Carcharoth
+N:C.Fenris
+N:C.Draugluin
+barks and bellows frighteningly!
+says, 'Oh good, another chew toy!'
+says, 'Yummy! I was getting tired of chicken...'
+lets out an earsplitting howl.
+drools all over the dungeon.
+lifts his leg at the nearest wall.
+says, 'Bad adventurer! No more living for you!'
+snarls and howls.
+
+N:p.Klingsor
+states, 'The time has come.'
+bellows, 'Your master calls! Obey!'
+grunts, 'Beware!'
+states, 'You will fall into my power, you will remain my slave!'
+cries, 'Halt! I have the right weapon to fell you!'
+yells, 'I will cut you down with your master's spear!'
+
+N:s.Cantoras
+N:U.Mephistopheles
+N:p.Mouth of Sauron
+N:L.Vecna
+N:L.Kaschei
+N:U.Gothmog
+brags, 'My power is beyond compare!'
+snorts, 'A mere mortal dares challenge my might? HA!'
+says, 'Not another one! I just finished chewing on the last!'
+wonders aloud how many XP you're worth.
+leafs through 'Evil Geniuses For Dummies.'
+mutters, 'Another damn loser to kill...'
+says, 'Hell shall claim your remains!'
+says, 'Another 12 skulls and I get that reward from the Boss!'
+yawns at your pathetic efforts to kill him.
+says, 'Minions, slaughter this fool!'
+says, 'Set thine house in order, for thou shalt die...'
+says, 'I'm no god... God has MERCY!'
+
+N:J.Chaos
+says, 'Foolish worm, you are DOOMED!'
+says, 'I'm the Big Bad Guy, and you're toast!'
+shouts, 'MOO HA HA HA! I am DEATH incarnate!'
+says, 'Prepare for your untimely demise!'
+opens up a can of Whoop-Ass (tm).
+picks its teeth with former adventurers' bones.
+says, 'Maybe I won't kill you... NOT!'
+yawns at your pathetic efforts to kill it.
+says, 'Another day, another bastard to slaughter...'
+says, 'I can't be bothered... minions, slaughter this fool!'
+says, 'Such a doomed, pathetic gesture as yours verges on the heroic!'
+says, 'Mere mortals such as you should not meddle the affair of the Powers!'
+
+N:p.Echizen
+says, 'Somethig comes from above! Be careful!'
+says, 'What is this stair?'
+says, 'Because it's time, I choose this red door!'
+chunters, 'Tonight, someone dies again...'
+
+N:V.Dio
+shouts, 'You cannot escape!'
+says, 'You are checkmated!'
+says, 'Huh! Come on!'
+shouts, 'Weak! Weak!'
+says, 'I announce beforehand that I kill you by sucking your blood!'
+shouts, 'bootless bootless bootless effort! Sing small!'
+shouts, 'bootless bootless bootless bootless bootless bootless bootless effort'
+says, 'Your slow sleepy speed never kill me!'
+says, 'A monkey cannot be a human! You are a monkey for this Dio!!'
+shouts, 'WRYYYYYYYYY!!!!!!'
+says, 'You came here to die in vain!'
+says, 'You think that you have a little possibilities that you defeat me? You are dull fish!'
+says, 'How many people I killed? Do you remember the amount of bread you ate?'
+
+N:p.Wong
+says, 'I knew that you come'
+says, 'Make your dream come true in the heaven'
+says, 'I am only man who actuate the time...'
+says, 'I can set forward the time and puch back the time as I like...'
+says, 'Time, move for only me!'
+says, 'What I boss is not the "Human being" but the "Time"...'
+says, 'A broken clock only have a detrimental effect on our doing.'
+says, 'I get here at any minute... And I get the world...'
+says, 'Nobody can stop the time, now...'
+says, '...For the future, I am the time...'
+says, 'I don't endure your sabotaging...'
+says, 'You are a little barrier of my plan. Die...'
+says, 'Everything is as I like... huh...'
+
+N:p.Caldarm
+says, 'Lookup failure, human race will go to ruin.'
+says, 'I am necessary for human race!'
+says, 'To kill me is to wipe off the future of human race!'
+says, 'Don't get in my way! You make human race go to ruin!'
+says, 'Stop the bootless effort and come back.'
+says, 'Empire have the glory back again. By me!'
+says, 'I have infinite days.'
+
+N:p.Kenshirou
+says, 'Count 3, then you die.'
+says, 'I came back to kill you.'
+says, 'Fist of the north star is invincible!!'
+shouts, 'AAATATATATATATATATATATATATATATATA!!!!'
+says, 'You're already dead.'
+
+N:G.Q
+says, 'Refill'
+says, 'Sho, I'm hungry..'
+
+N:p.Pip
+shouts, 'Fire-ball!'
+shouts, 'Fire-finger1!'
+shouts, 'Fire-finger2!'
+shouts, 'Blockhead!'
+
+N:p.Ansalom
+says, 'Go to 14!'
+shouts, 'Remember! Curiosity killed the cat!'
+says, 'Welcome, youth...'
+says, 'Antharom, Ansalom... what's the difference'
+
+N:p.Bison
+shouts, 'PSYCHO CRUSHER'
+says, 'Get lost, you can't compare with my powers!'
+says, 'Anyone who opposes me will be destroyed!'
+says, 'Allow me to usher you to the sulfurous pits of hell!'
+says, 'You were a fool for thinking that your showy moves would work on me!'
+
+N:u.demonite
+magically summons Cyberdemons!
+magically summons special opponents!
+invokes a mana storm.
+invokes a darkness storm.
+invokes a starburst.
+throws a Psyco-Spear.
+invokes the Hand of Doom!
+casts a Globe of Invulnerability.
+magically summons Lords of Amber!
+yells 'The World!' Time has stopped!
+casts Anti-Magic. You feel your spells are blocked!
+throws a large rock.
+invokes a stasis field.
+casts polymorph other ... You turn into a giant toad!
+says, 'I'm BABY SATAN'
+
+N:I.Lousy
+says, 'You, transform a louse!'
+says, 'Don't look me as I was a louse!'
+says, 'Here a louse.'
+says, 'Die. Die. Damn thing is strong!'
+
+N:p.VM
+says, 'On Error Resume Next'
+says, 'Where's my damn Intellisense?'
+says, 'Want some new features?'
+says, '10 PRINT "I AM THE MASTER OF THE UNIVERSE!"'
+says, '20 GOTO 10'
+takes another swig of Jolt cola.
+opens another bag of Doritos.
+takes out his 5d5 longsword and says, 'No more Mr. Nice Guy!'
+says, 'I'll teach you not to play!'
+says, 'Wait until you see the changes I made for this version!'
+says, 'If you're going to cry, just go play Vanilla!'
+says, 'Game balance? What is this ... game ... balance?'
+wonders why monsters only get 4 blows when you get 16.
+says, 'If you think I'm tough, you ain't seen nothin' yet!'
+ponders reading a scroll of *destruction* just to save himself the bother.
+asks, 'How do you like 'No Spells'? There's plenty more where that came from!'
+is ticked off!
+says, 'Have you heard about the new version of Hengband?'
+says, 'Not until the restructure is done!'
+says, 'Modifying this line shouldn't crash anything.'
+says, 'I'm still not adding it as an option!'
+
+N:@.clone
+says, "Monkey see, monkey do!"
+says, "Don't you monkey with the monkey!"
+munches on a banana.
+says, "Hear no evil, see no evil, speak no evil."
+
+N:*:Default lines
+cackles evilly.
+cackles diabolically.
+says, 'Surrender, miserable flea!'
+says, 'Come get some!'
+says, 'Let's rock!'
+laughs devilishly.
+says, 'Flee while you can, gnat!'
+says, 'You are about to die, maggot!'
+says, 'Read your prayers!'
+hisses, 'Die!'
+says, 'You don't have a chance, moron!'
+says, 'Fear my wrath, fool!'
+says, 'Feel my fury, dolt!'
+says, 'Groo is a genius, compared to you!'
+gives you a contemptuous glance.
+says, 'Prepare to meet your Maker, fool!'
+says, 'Perish, mortal!'
+says, 'Your puny efforts make me laugh!'
+says, 'Drop dead, wimp!'
+says, 'You should have fled while you had the chance.'
+screams, 'Die by my hand!'
+says, 'Your last wish, punk?'
+says, 'Your death shall be a slow, painful one.'
+says, 'Your head shall be my next trophy.'
+screams, 'You are DOOMED!'
+grins sadistically.
+says, 'This dungeon shall be your TOMB!'
+laughs fiendishly.
+says, 'Your fate is sealed, worm.'
+says, 'Resistance is useless.'
+says, 'Hell shall soon claim your remains.'
+says, 'Thou shalt repent of thy cunning.'
+says, 'Verily, thou shalt be one dead cretin.'
+says, 'Surrender or die!'
+says, 'Savor thy breath, it be thine last.'
+says, 'Prepare do die, miscreant!'
+says, 'You're history, dude!'
+says, 'Feeling lucky, punk?'
+says, 'You're toast!'
+says, 'You're dead meat.'
+says, 'Make my day.'
+says, 'I shall flatten you!'
+says, 'I could spare you, but why?'
+says, 'Take this, you sissy!'
+says, 'Nothing can save you now!'
+says, 'This dungeon ain't big enough for the both of us.'
+says, 'I'm gonna break your face!'
+says, 'I hope you enjoy pain!'
+says, 'Give me your best blow!'
+says, 'Draw, if you are a man!'
+says, 'A time to die, fool!'
+bellows frighteningly!
+says, 'You will never leave this dungeon alive!'
+says, 'You'll leave this dungeon only in a wooden box!'
+says, 'Your mother wears army boots!'
+says, 'Drop that weapon, NOW!'
+says, 'Life ain't for you, and I'm the cure!'
+says, 'Resistance is futile. You will be terminated.'
+says, 'Sight and smell of this, it gets me going.'
+says, 'Victim is your name and you shall fall.'
+says, 'Stepping out? You'll feel our hell on your back!'
+says, 'Now I will waste my hate on you.'
+says, 'Don't tread on me!'
+says, 'So be it! Threaten no more!'
+says, 'Kill for gain or shoot to maim, but I don't need a reason.'
+says, 'You'll die as you lived, in a flash of the blade.'
+says, 'You'd better stand cos there's no turning back.'
+says, 'I just want to see your blood, I just want to stand and stare.'
+says, 'I've been looking so long for you; you won't get away from my grasp.'
+says, 'I'm coming after you; you can kiss your arse goodbye.'
+says, 'It's official; you suck!'
+sings, 'I hate you, you hate me, we're a helluva family.'
+says, 'A mere mortal dares challenge *ME*?!'
+says, 'There is no escape and that's for sure.'
+says, 'This is the end; I won't take anymore.'
+says, 'Say goodbye to the world you live in.'
+says, 'You've always been taking, but now you're giving.'
+says, 'My brain's on fire with the feeling to kill.'
+says, 'Don't try running away, because you're the one I'll find.'
+says, 'I was looking for you to start up a fight.'
+says, 'My innocent victims are slaughtered with wrath and despise!'
+says, 'I have found you, and there is no place to run.'
+says, 'My blood lust defies all my needs.'
+says, 'And damn'd be him that first cries: Hold, enough!'
+says, 'I can smell your blood, human!'
+says, 'Has your folly led to this?'
+wonders aloud how many experience points you're worth...
+says, 'Pride yourself on this, that you were slain by a champion.'
+thunders, 'May heaven have mercy on your soul, for I will have none.'
+screams for your blood!
+sighs, 'They send a poorer grade of adventurers down each year than the last.'
+says, 'Your life-blood will baptise my blade!'
+shouts, 'You will serve me in Valhalla!'
+snickers, 'Mommy's not here to save you now!'
+says, 'You're almost not worth killing...almost!'
+leaps towards you with death in its eye.
+sings, 'Cuts yer if ye stand, shoot yer if ye run.'
+says, 'Another adventurer?  I just got through picking my teeth with the last.'
+says, 'Your two ears will decorate my belt.'
+says, 'I love all that blood.'
+says, 'I don't want to hurt you, I only want to kill you.'
+says, 'I like killing people, because it's so much fun.'
+screams, 'I'm out to destroy and I will cut you down!'

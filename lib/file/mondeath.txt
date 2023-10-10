@@ -1,0 +1,56 @@
+N:C.Grip
+N:C.Wolf
+N:C.Fang
+
+N:h.Smeagol
+says, 'We hates, hates, hatesss!'
+
+N:..It
+says, 'It's appalling.'
+
+N:p.Borel
+says, 'Oh, basely done! I had hoped for better of thee!'
+
+N:p.Jack
+says, 'I'll get even! Next time I see you, Death is yours!'
+
+N:A.Uriel
+N:A.Azriel
+N:A.Raphael
+says, 'My God, Please visit a punishment upon this unrighteous sinner!'
+
+N:V.Vlad
+says, 'Faugh, I'll be back...so long as human psyche has a blackness. Ho-ho.'
+
+N:p.Echizen
+says shiftlessly, 'Oh. No.'
+
+N:V.Dio
+shouts, 'This CAN'T be happening! I am Dying....!!!!!'
+
+N:p.Wong
+shouts, 'This CAN'T be happening!'
+
+N:p.Caldarm
+says, 'I desire peace ... for all people... '
+
+N:p.Kenshirou
+shouts, 'JuliaAAAAAAA!!!'
+
+N:p.Pip
+was killed by a cruel venturer. Go to 14.
+
+N:p.Raou
+points at himself and shouts, 'I finished my life with no regrets!'
+
+N:I.Lousy
+says, 'Ah, PosChengband is too difficult!  I'm going back to Chengband!!'
+
+N:p.VM
+says, 'I guess PosChengband is too easy!'
+says, 'Wait until you see me next release!'
+says, 'I guess this is the last version of PosChengband!'
+says, 'Well, Hengband was much more fun than this!'
+
+N:*:Default
+shouts, 'AAAARRRGGGHHH!!!'

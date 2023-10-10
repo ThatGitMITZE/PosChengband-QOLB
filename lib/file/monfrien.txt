@@ -1,0 +1,19 @@
+N:h.Maggot
+seems sad about something.
+asks if you have seen his dogs.
+mumbles something about mushrooms.
+
+N:C.Grip
+N:C.Wolf
+N:C.Fang
+
+N:p.Gandalf
+says, 'Don't space out. Cover me! Bogan!'
+says, 'I'll invoke fire magic. Attack concurrently with me!'
+
+N:p.Pip
+shouts, 'Fire-ball!'
+shouts, 'Fire-finger1!'
+shouts, 'Fire-finger2!'
+shouts, 'Blockhead!'
+
