@@ -1,0 +1,154 @@
+# File: xtra-xxx.prf
+
+#
+# This file defines special attr/char mappings for use in "graphics" mode
+#
+# See "lib/help/command.txt" and "src/files.c" for more information.
+#
+
+
+##### Remap the player icon #####
+
+?:[EQU $RACE Human Doppelganger]
+R:@.player:0:0x80
+?:[EQU $RACE Demigod]
+R:@.player:0:0x80
+?:[EQU $RACE Hobbit]
+R:@.player:0:0x83
+?:[EQU $RACE Gnome]
+R:@.player:0:0x84
+?:[EQU $RACE Dwarf]
+R:@.player:0:0x85
+?:[EQU $RACE Snotling]
+R:@.player:0:0x8F
+?:[EQU $RACE Half-Troll]
+R:@.player:0:0x87
+?:[EQU $RACE Amberite]
+R:@.player:0:0x88
+?:[EQU $RACE High-Elf Wood-Elf Water-Elf]
+R:@.player:0:0x89
+?:[EQU $RACE Barbarian]
+R:@.player:0:0x8A
+?:[EQU $RACE Half-Ogre]
+R:@.player:0:0x8B
+?:[EQU $RACE Half-Giant]
+R:@.player:0:0x8C
+?:[EQU $RACE Half-Titan]
+R:@.player:0:0x8D
+?:[EQU $RACE Cyclops]
+R:@.player:0:0x8E
+?:[EQU $RACE Yeek]
+R:@.player:0:0x8F
+?:[EQU $RACE Klackon Centaur Drider]
+R:@.player:0:0x90
+?:[EQU $RACE Kobold]
+R:@.player:0:0x91
+?:[EQU $RACE Nibelung]
+R:@.player:0:0x92
+?:[EQU $RACE Dark-Elf]
+R:@.player:0:0x93
+?:[EQU $RACE Draconian]
+R:@.player:0:0x94
+?:[EQU $RACE Mindflayer]
+R:@.player:0:0x95
+?:[EQU $RACE Imp Tengu]
+R:@.player:0:0x96
+?:[EQU $RACE Golem]
+R:@.player:0:0x97
+?:[EQU $RACE Skeleton]
+R:@.player:0:0x98
+?:[EQU $RACE Zombie]
+R:@.player:0:0x99
+?:[EQU $RACE Vampire]
+R:@.player:0:0x9A
+?:[EQU $RACE Spectre]
+R:@.player:0:0x9B
+?:[EQU $RACE Sprite]
+R:@.player:0:0x9C
+?:[EQU $RACE Beastman]
+R:@.player:0:0x9D
+?:[EQU $RACE Ent]
+R:@.player:0:0x97
+?:[EQU $RACE Archon]
+R:@.player:0:0x9C
+?:[EQU $RACE Balrog]
+R:@.player:0:0x96
+?:[EQU $RACE Dunadan]
+R:@.player:0:0x81
+?:[EQU $RACE Shadow-Fairy]
+R:@.player:0:0x86
+?:[EQU $RACE Kutar]
+R:@.player:0:0x91
+?:[EQU $RACE Android]
+R:@.player:0:0x97
+
+?:[EQU $CLASS Warrior]
+R:@.player:0xA4:0
+?:[EQU $CLASS Mage Blood-Mage Necromancer Yellow-Mage Gray-Mage]
+R:@.player:0xA5:0
+?:[EQU $CLASS Priest High-Priest]
+R:@.player:0xA6:0
+?:[EQU $CLASS Rogue Skillmaster]
+R:@.player:0xA7:0
+?:[EQU $CLASS Ranger]
+R:@.player:0xA8:0
+?:[EQU $CLASS Paladin]
+R:@.player:0xA9:0
+?:[EQU $CLASS Warrior-Mage]
+R:@.player:0xAA:0
+?:[EQU $CLASS Chaos-Warrior]
+R:@.player:0xAB:0
+?:[EQU $CLASS Monk Mystic]
+R:@.player:0xAC:0
+?:[EQU $CLASS Mindcrafter Psion]
+R:@.player:0xAD:0
+?:[EQU $CLASS High-Mage]
+R:@.player:0xAE:0
+?:[EQU $CLASS Imitator]
+R:@.player:0xAC:0
+?:[EQU $CLASS Beastmaster]
+R:@.player:0xAA:0
+?:[EQU $CLASS Sorcerer]
+R:@.player:0xA5:0
+?:[EQU $CLASS Archer]
+R:@.player:0xA8:0
+?:[EQU $CLASS Magic-Eater Devicemaster]
+R:@.player:0xAD:0
+?:[EQU $CLASS Bard]
+R:@.player:0xA8:0
+?:[EQU $CLASS Red-Mage]
+R:@.player:0xAB:0
+?:[EQU $CLASS Samurai]
+R:@.player:0xAA:0
+?:[EQU $CLASS Force-Trainer]
+R:@.player:0xAC:0
+?:[EQU $CLASS Blue-Mage]
+R:@.player:0xAD:0
+?:[EQU $CLASS Cavalry]
+R:@.player:0xA4:0
+?:[EQU $CLASS Berserker Rage-Mage Mauler]
+R:@.player:0xAB:0
+?:[EQU $CLASS Weaponsmith]
+R:@.player:0xAA:0
+?:[EQU $CLASS Mirror-Master]
+R:@.player:0xAD:0
+?:[EQU $CLASS Ninja Scout]
+R:@.player:0xAA:0
+?:[EQU $CLASS Sniper]
+R:@.player:0xA8:0
+?:[EQU $CLASS Time-Lord]
+R:@.player:0xA5:0
+?:[EQU $CLASS Blood-Knight]
+R:@.player:0xAA:0
+?:[EQU $CLASS Warlock]
+R:@.player:0xA5:0
+?:[EQU $CLASS Archaeologist]
+R:@.player:0xAC:0
+?:[EQU $CLASS Duelist]
+R:@.player:0xAA:0
+?:[EQU $CLASS Wild-Talent]
+R:@.player:0xAB:0
+?:[EQU $CLASS Rune-Knight]
+R:@.player:0xA9:0
+?:[EQU $CLASS Weaponmaster]
+R:@.player:0xA4:0
