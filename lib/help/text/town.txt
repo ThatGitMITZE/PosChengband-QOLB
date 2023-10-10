@@ -1,0 +1,285 @@
+The Town and Wilderness
+
+The game takes place in one of several worlds, depending on the choice 
+you made during the birth process. For example, if you are playing The 
+World of Middle Earth, then the game begins in a world called The 
+Desolation of Smaug. Every world has a goal: a monster you must slay in 
+order to either advance to the next world, or to complete the game. 
+Each world also has a surface wilderness populated with towns and 
+dungeons to explore. You must travel in this world in order to learn 
+the layout, though it might prove beneficial to ask a wizard for help 
+in locating unknown dungeon entrances.
+
+Fortunately, your adventures will begin in the (relative) safety of 
+town where you may equip yourself for the adventures to come. Next to 
+your starting town, there should be an initial dungeon entrance which 
+you can located either with the map display (M) or with the object list 
+(]). You will generally want to explore this dungeon initially until 
+your character is powerful enough to survive the dangers of unknown 
+wilderness exploration!
+
+    There is no longer a global map (<) for wilderness 
+    travel. You simply explore the wilderness as you would 
+    any other dungeon level.
+
+Town and Wilderness Symbols
+
+Symbols on your map can be broken down into three categories: terrain 
+features such as walls, floor and doors, and trees, water and lava; 
+objects which can be picked up such as treasure, weapons, magical 
+devices, etc; and creatures which may or may not move about, but are 
+mostly harmful to your character's well being. Symbols specific to the 
+town and wilderness are shown below. Note that many creatures and 
+objects from the dungeon may also appear in town and you should also 
+review the comprehensive listing of all the various symbols which can 
+be found in the dungeon section (see [a]).
+
+
+  Terrain                       Shops
+  ----------------------        -------------------------------
+  #   A Tree                    1   Entrance to General Store
+  ~   Shallow Water             2   Entrance to Armory
+  ~   Deep Water                3   Entrance to Weapon Smith
+  ~   Shallow Lava              4   Entrance to Temple
+  ~   Deep Lava                 5   Entrance to Alchemy Shop
+  #   Mountains                 6   Entrance to Magic Shop
+  .   Floor / Road              7   Entrance to the Black Market
+  .   Dirt                      8   Entrance to your Home
+  .   Grass                     9   Entrance to Bookstore
+  >   Dungeon Entrance          0   Entrance to the Museum
+  >   Quest Entrance
+
+Note that trees, water (deep and shallow) and lava (deep and shallow) 
+may also appear in the dungeon.
+
+The Town Level
+.#:#:########:##:###############:#:::.:##.#
+########:###:#####:::#:#####:#:#:#####...#:
+############::##################:##:::#...#
+######8.....#::#################:#####:###.
+########:#:.#############################.#
+######:##:#..:#############+####:######:.##
+######:::::........########.###########::..
+########::##:##::#.########.##:#::.~~~#####
+:#:###########:#.#.#:######.####:.~~#~~:#..
+:###:#######:##:::...@............~#*#~....
+###::############:.#######:.:#::##~~#~~.#.:
+#::#:##3#########:.########.::.:###~~~#...:
+#::::#..##########.#####:##.######:####.:##
+######.###########.###:####+###:::####:#::#
+###2...............###..#######.::#:#######
+######.###############:##########:#:#::::#:
+######.###########:#.#::#############.:..:#
+######1#########:::::#.#:#:#####:::.:..:..#
+#################::..:.#::##.:.::#.::..##.#
+##################:..#.:#:.:#:.###..:..:.:#
+#################:#.:..#:###:.:#::.:::#:.#:
+
+The town level is where you will begin your adventure. The first time 
+you are in town it will be daytime (unless you are playing an undead 
+race who start at night), but note that the sun rises and falls as time 
+passes and if you enter the town at night, the town will be dark. 
+Fortunately, the various shops and the other special buildings are open 
+on a 24-hour basis.
+
+The world includes multiple towns separated by a wilderness and many 
+dungeons as well. Be sure to check the various buildings in each town 
+to see what services are available.
+
+The Wilderness Map
+
+The wilderness requires actual exploration to learn the layout. The 
+following is a sample map from The World of Amber which I have 
+completely explored:
+##################################################
+###################......~~~~~~~~~~~~~~~...#######
+##..################......~~~~~~~~~~~~~~...#######
+#...##################.....~~~~~~~~~~~~~~.~.######
+#...#####################....~~~~~~~~~>~~~~.######
+############################..~~~~~~~~~~~..#######
+############################...~~~~~~~~~...#######
+###############################...~~.......#######
+###########....#################...........##>####
+###########..#.#################..........########
+##########.*.#.####################.#...#####.####
+#########...~....#>###############################
+########.~~~~~.~...####>####################.....#
+#######..~~~~~~~.>.###########>##>###...*##....~.#
+######..~~~~~~~~*.....................####...~~~~#
+######..~>~~~~~~...##########>####*##.#####......#
+#######....~.~~~....#.########################...#
+###########.#........~...#########################
+################.....~~.~~..######################
+##################################################
+
+This world is randomly generated for each game you play, so the actual 
+map layout will differ from game to game (as will the available 
+dungeons). In The World of Middle Earth you get a fixed sequence of 
+world maps that do not change from game to game.
+
+The wilderness consists of a moderately sized tile world. Each tile is 
+the size of a standard dungeon level and contains themed wilderness 
+terrain (mountainous areas, oceans, plains, etc). There are several 
+towns located in various parts of the world and each town is situated 
+in its own wilderness square. In addition, there are numerous dungeon 
+entrances in the wilderness. Again, each is located on its own 
+wilderness square.
+
+The wilderness is not uninhabited and can be dangerous for the unwary. 
+As a general rule, the further your character gets from civilization 
+the more cautious he or she should be. When traveling between towns, 
+try to stay on the roads. These are by no means safe, but they are 
+safer than wandering off the beaten path. In addition, traveling is 
+safer during the daytime.
+
+Each of the towns contains the standard nine shops where you can 
+purchase your supplies for your trips into the dungeon and sell the 
+items you have collected. There are also special buildings offering 
+services for a fee. The services available and the prices charged may 
+vary from town to town so it can be worth hunting around for the best 
+prices.
+
+Townspeople
+
+The town contains many different kinds of people. There are the street 
+urchins, young children who will mob an adventurer for money, and seem 
+to come out of the woodwork when excited. Blubbering idiots are a 
+constant annoyance, but not harmful. Public drunks wander about the 
+town singing, and are of no threat to anyone. Sneaky rogues who work 
+for the black market are always greedily eyeing your backpack for 
+potential new 'purchases'... And what town would be complete without a 
+swarm of half drunk warriors, who take offense or become annoyed just 
+for the fun of it? Finally, towns are no longer completely safe. 
+Monsters can wander in from the wild, of course (e.g. an Orc raiding 
+party may rampage through town). In addition, you will see many types 
+of men and elves in towns, and they are not always friendly. A 
+difficult town may be populated with sorcerers and arch-priests!
+
+Shopping in Town
+
+Your character will begin his adventure with some basic supplies, and 
+some extra gold with which to purchase more supplies at the town 
+stores. You may enter any open store and barter with the owner for 
+items you can afford by simply moving onto the entrance, which is 
+represented by a number from 1 to 9.
+
+Shopping has been re-written for version 6.0.0. Please see [b] for up 
+to date help about shopping commands.
+
+Stores do not always have everything in stock. As the game progresses, 
+they may get new items so check from time to time. Also, if you sell 
+them an item, it may get sold to a customer while you are adventuring, 
+so don't always expect to be able to get back everything you have sold.
+
+Note that new store inventory will not be added while you are in town, 
+even if you save the game and return (However, items you just sold may 
+be resold at any time. In fact, there seems to be an insatiable demand 
+for quality items, and they can get resold rather quickly!). You must 
+spend time in the dungeon if you wish the store owner to clear out his 
+stock and acquire new items. If you have a lot of spare gold, you can 
+purchase every item in a store, which will induce the store owner to 
+bring out new stock, and perhaps even retire.
+
+Store owners will not buy harmful or useless items. If an object is 
+unidentified, they will pay you some base price for it. Once they have 
+bought it they will immediately identify the object. If it is a good 
+object, they will add it to their inventory. If it was a bad bargain, 
+they simply throw the item away. In any case, you may receive some 
+knowledge of the item if another is encountered.
+
+Object Pricing
+
+Each store owner has three primary attributes: the maximum amount they 
+will pay for an object, their race and how greedy they are. Each of 
+these affects how much a store owner will charge for an object and how 
+much they are prepared to pay for something. Only the first two 
+attributes can be known by the player. The final factors affecting 
+pricing are the race, charisma and notoriety of the player.
+
+Each object has a base value which is computed based on the quality of 
+the object. This base value is modified depending on the store owner's 
+greed (greedy store owners charge more and will pay less), your 
+charisma (charismatic players pay less and can charge more) and whether 
+or not the shopkeeper is friendly to your race (Shopkeepers are quite 
+distressed whenever a Balrog enters their shop!). Also, famous players 
+are treated favorably in the towns, but new adventurers are a dime a 
+dozen and make ready marks for greedy store owners. Frankly, the 
+shopkeepers have had enough of pretentious, know-it-all, upstarts who 
+think they can just buy a lantern and go kill Morgoth. Pshaw!
+
+Finally, when selling objects, the cap on the store owner's purse is 
+applied so that even a favored race with a high charisma can not sell 
+an item for more than that amount. This cap applies only to single 
+items so it is possible to sell a stack of similar items for more than 
+the cap on the store owner's purse.
+
+List of Shops
+
+  The General Store (1)
+  The General Store sells foods, drinks, some clothing, torches, lamps, 
+  oil, shovels, picks, and spikes. All of these items and some others 
+  can be sold back to the General store for money.
+
+  The Armory (2)
+  The Armory is where the town's armor is fashioned. All sorts of 
+  protective gear may be bought and sold here.
+
+  The Weaponsmith's Shop (3)
+  The Weaponsmith's Shop is where the town's weapons are fashioned. 
+  Hand and missile weapons may be purchased and sold here, along with 
+  arrows, bolts, and shots.
+
+  The Temple (4)
+  The Temple deals in healing and restoration potions, as well as bless 
+  scrolls, word of recall scrolls, some approved priestly weapons, as 
+  well as books of Life magic for priests and paladins.
+
+  The Alchemy shop (5)
+  The Alchemy Shop deals in all types of potions and scrolls.
+
+  The Magic User's Shop (6)
+  The Magic User's Shop deals in all sorts of rings, wands, amulets, 
+  and staves, as well as some magic books.
+
+  The Black Market (7)
+  The Black Market will sell and buy anything at extortionate prices. 
+  However, it occasionally has VERY good items in it. The shopkeepers 
+  are not known for their tolerance...
+
+  Your Home (8)
+  This is your house where you can store objects that you cannot carry 
+  on your travels, or will need at a later date. See [c] for more 
+  information.
+
+  The Bookstore (9)
+  The Bookstore deals in all sorts of magical books. You can purchase 
+  and sell spellbooks for the spellcasters here.
+
+  The Museum (0)
+  This is a place where you can donate any item to display. Use it when 
+  you find interesting but needless items and you want to leave it in 
+  memory. See [d] for more information.
+
+Special Buildings
+
+In addition to the shops, the town will have special buildings with 
+custom services. The buildings vary from town to town significantly 
+both in terms of their name and the services they offer. Each town 
+contains an Inn where the player may obtain food (assuming food does 
+them any good) and rest for the night. Other buildings might include 
+libraries where you can research objects and monsters, guilds for the 
+various classes and magic realms, temples, healers and more. Note that 
+some buildings such as guilds may offer preferential prices to members 
+of their guild or offer services which are only available to their 
+guild. Some building owners may offer preferential treatment to their 
+own race or to a group of races.
+
+
+Original   : (??)
+Updated    : (??)
+Updated    : Zangband DevTeam
+Updated    : Hengband 1.0.11
+Updated    : PosChengband 7.2.0
+
+
+

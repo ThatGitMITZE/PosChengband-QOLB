@@ -1,0 +1,194 @@
+General Information
+
+This document gives a brief introduction to the game. You will probably 
+want to browse through all the help files, especially the sections on 
+available commands (see [a] and [b]), before beginning any serious 
+adventuring. There is also a Newbie guide (see [c]) and I'll leave it 
+you to decide if that is the best place to start reading. (Aside: 
+Whenever you see a letter in square brackets, that is a link to another 
+place in the documentation. Press that letter to follow the link, and 
+escape to return back to where you were in this document. Go ahead and 
+try it now! You can also press ? for help on the help system itself.)
+
+The game is a single player dungeon simulation. A player may choose 
+from a number of races, classes and magic realms when creating a 
+character (see [d]), and then "run" that character over a period of 
+days, weeks, even months. Deep down inside, the real objective of the 
+game is to increase your experience, and certain other characteristics, 
+and also to collect useful items, to give you a decent chance of 
+defeating the final monster. Depending upon which world sequence you 
+are playing, this is either Morgoth, Lord of Darkness or The Serpent of 
+Chaos.
+
+Eventually, the game will support multiple "modules" and the player 
+will select which module to play during the birth sequence. The Middle 
+Earth module is currently the only one, but a World of Amber will 
+probably arrive soon. Each module defines a sequence of worlds for the 
+player to explore. Each world has a surface wilderness with one or more 
+towns as well as multiple dungeons. Each dungeon has one or more 
+guardians: sometimes there is an initial guardian on the first level 
+but there is always a guardian on the final level. One of these final 
+guardians is also the "world guardian": defeat it an you either move on 
+to the next world, or you win the game! For example, in Middle Earth, 
+the first world is The Desolation of Smaug, and you must kill this 
+dragon before moving on to the next world (The Betrayal of Sarmuan).
+
+The game also offers a few different ways to play. First, there is a 
+Beginner Mode that limits the number of races and classes available. 
+Playing in beginner mode is designed to simplify the birth process and 
+get you playing as soon as possible so that you may more quickly learn 
+the game. Eventually, you will want to upgrade to Normal Mode, the 
+usual and expected way to play. This mode offers the full repertoire of 
+racial and class choices. Prepare to be overwhelmed! Also, as you read 
+the help files, you will find that most of the documentation is written 
+for this mode. Finally, you may decide you are tired of playing the 
+game as a normal player, constantly dying to myriad powerful monsters, 
+and decide to play as a monster yourself in Monster Mode. With this 
+style, you can pick one of many types of monsters to play and will 
+evolve into more powerful forms as you gain experience. Many monsters 
+have unique body types so the equipment game will prove interesting. 
+Most also have some forms of innate attacks and may not be able to 
+wield weapons at all (e.g. Dragons can claw and bite, but it would be 
+funny to see one wielding a sword). Truly, there is much to try!
+
+First Place to Go
+
+The player will begin his adventure in town where he may acquire 
+supplies, weapons, armor, and magical devices by bartering with various 
+shop owners. You will have some gear as a birthright, and a little bit 
+of gold as well. I recommend buying some scrolls of teleport and 
+potions of cure light wounds (or serious wounds if you are rich) before 
+beginning to play. It is very easy to get in over your head, especially 
+early on, so having a ready means of escape is essential. If you have 
+gold left over, consider upgrading your starting torch to a lantern, 
+which casts more light and allows you to see further in the dark.
+
+You are now ready to descend into the dungeon where fantastic 
+adventures await! The first dungeon to explore is The Stronghold, a 
+small dungeon whose entrance is located near the starting town. Use the 
+] or the M commands to locate the entrance. Like many of the dungeons, 
+this one has a boss: some king or other of the Southerings. He's 
+reasonably tough for his level, but this is mostly due to his vast host 
+readied about him. He has many more friends at the ready as well, so 
+you won't want to face him in the open.
+
+Update: As you are exploring this dungeon, you might wonder something: 
+How do I get back to the surface? Well, you can walk back up stairs of 
+course, but this will eventually become tiresome. Fortunately, you will 
+begin finding Wizard Tiles on many (but not all) dungeon levels, 
+starting at about 200' (DL4). These tiles are located in special rooms, 
+often under some sort of monster guard, and unless you are wizard 
+yourself, they are your only means of recalling back to the surface 
+(There are no longer Word of Recall scrolls, but a few magic realms 
+offer the spell). Some towns will have a Wizard Tile for free travel 
+back to the depths, but most will offer a town service and charge you a 
+fee.
+
+Once you have completed The Stronghold, you should be ready to set out 
+into the wild, the subject of the next section.
+
+Wilderness
+
+Your adventures take place in a dangerous wilderness. Fortunately, you 
+begin your journey in the relative safety of the town. But beware, even 
+inside the town walls the wilderness is not far off. Dangerous monsters 
+do occasionally wander into the town!
+
+When you are ready to begin exploring the wilderness, you will need 
+ample supplies of light and food. 
+
+Update: The game no longer has a special wilderness travel mode, so 
+wilderness exploration is just like dungeon exploration. Also, the 
+wilderness map is no longer revealed to the player, but must be learned 
+through actual exploration (Eventually, some sort of random wilderness 
+generator will be available as a birth option). Fortunately, there are 
+usually roads available leading out of town, and you can travel along 
+those to locate additional towns or dungeon entrances. As a tip, using 
+the run command will keep the player on the road if you do it right: 
+Starting on a "road tile" initiate running in the direction of the next 
+road tile, and you will travel quickly and automatically, stopping only 
+under monster assault or ambiguity in the road tile sequence (which 
+sometimes happens at bends in the road). For example, SHIFT+6 will 
+follow the (yellow-brick) road out of town in this scenario:
+:#:.:#:#::..::.:.#.####.:..
+#######...:...:.:#:#:..#.:.
+######+.:#.:......###.:.:#.
+########:#:..:..#.##.##.::.
+#:###:::#####:#::.###::::##
+:#::#:######:####:###:....:
+......5#####:::.::.::#.##:#
+.:..:#######:......:::.#:..
+::#.::##:::#..............:
+:::.:.:#::##:@.............
+:#:.:.#:#####..............
+#.#.....9####..............
+.#..##:######::::..........
+..###.::##.#:#:.::.::.#::.:
+
+
+As you travel, you may "stumble on to something interesting," which 
+indicates a dungeon entrance. Use the M command to locate the entrance 
+(You can also travel to the stairs with ] followed by ` once you select 
+the stairs). Some entrances will require Levitation to reach, 
+especially in mountainous terrain, so you might wish to acquire this 
+ability before setting out on your journeys (Visit The Magic Shop).
+
+Each dungeon in the wilderness has a starting level which is shown to 
+you when prompted if you really wish to enter. Think of this as a 
+difficulty level, and indeed, many of the dungeons are quite difficult 
+if you wander into them unprepared, so be careful!
+
+Winning The Game
+
+Update: The Middle Earth module consists of a sequence of worlds, each 
+of which contains a specific monster to kill. The first world is The 
+Desolation of Smaug and you must eventually journey to The Lonely 
+Mountain to defeat this foe. Upon success, a special Travel Portal will 
+be generated allowing you to journey to the next world to continue your 
+quest (Tip: You don't need to take the Travel Portal right away. You 
+can always return to the sight of your triumph later on. Also, the 
+contents of your Home will follow you to the next world). Eventually, 
+if you defeat Morgoth, Lord of Darkness in The Depths of Mordor you 
+will win the game, but that is a long ways off so don't expect to win 
+right away. You will need to learn how to play well in order to 
+succeed, and this may take many deaths to achieve. So set your sights 
+lower and focus on having fun instead!
+
+Update: As of this writing, the Middle Earth module is the only 
+available option, so you aren't even prompted during your character's 
+birth. I do plan a World of Amber module that will have The Serpent of 
+Chaos as the "win monster." Stay tuned!
+
+Upon Death and Dying
+
+If your character falls below 0 hit points, he has died and cannot be 
+restored. You can write a last word for posting on the Internet after 
+which time, a tombstone showing information about your character will 
+be displayed. You are also permitted to get a record of your character, 
+and all your equipment (identified) either on the screen or in a file.
+
+Update: The game now automatically keeps a character dump for each of 
+your players. You can view your own personal high score ladder using 
+the ~H command.
+
+Whether your character is killed or you retire victorious, it will 
+leave behind a reduced save file, which contains any Lore your player 
+has learned, such as information about various monsters and objects. 
+Personally, I prefer to reset my Lore information for every game, so I 
+never re-use existing savefiles.
+
+And don't get discouraged! Dying is very common and makes victory, when 
+it comes at long last, all the more sweet. It may take months to win 
+the game, perhaps even years. But there is fun in the journey, and much 
+to try along the way. Enjoy!
+
+
+--
+Original   : (??)
+Updated    : (??)
+Updated    : Zangband DevTeam
+Updated    : Hengband 1.5.4
+Updated    : PosChengband 7.1.0
+
+  
+
