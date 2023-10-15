@@ -2530,6 +2530,7 @@ static cptr do_trump_spell(int spell, int mode)
         if (desc) return "Hastes a monster.";
         dice.base = plr->lev; /* currently unused */
         if (cast && !plr_cast_bolt(GF_OLD_SPEED, dice)) return NULL;
+		break;
     case 12:
         if (name) return "Teleport Level";
         if (desc) return "Teleport to up or down stairs in a moment.";
