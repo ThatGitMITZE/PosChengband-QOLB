@@ -124,11 +124,13 @@ void museum_display(doc_ptr doc, obj_p p, int flags)
     slot_t max = inv_last(_museum, obj_exists);
     char   name[MAX_NLEN];
 
-    if (max > 100)
-    {
-        doc_printf(doc, "There are %d items in the museum. Here are the top 100:\n", max);
-        max = 100;
-    }
+    /***************************************************************************************
+	 *if (max > 100)
+     *{
+     *    doc_printf(doc, "There are %d items in the museum. Here are the top 100:\n", max);
+     *    max = 100;
+     *}
+	 **************************************************************************************/
 
     for (slot = 1; slot <= max; slot++)
     {
