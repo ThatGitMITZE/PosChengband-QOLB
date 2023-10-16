@@ -711,7 +711,7 @@ static void _runesword_weapon_bonus(plr_tim_ptr timer, obj_ptr obj, plr_attack_i
     add_flag(info->obj_flags, OF_SLAY_GOOD);
     add_flag(info->obj_known_flags, OF_SLAY_GOOD);
 
-    if (obj->tval == TV_SWORD)
+    if (obj && obj->tval == TV_SWORD)
     {
         add_flag(info->obj_flags, OF_VORPAL);
         add_flag(info->obj_known_flags, OF_VORPAL);
