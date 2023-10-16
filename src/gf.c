@@ -2758,7 +2758,11 @@ bool gf_affect_m(who_t who, mon_ptr mon, int gf, int dam, int flags)
             dam = dam * 2 / 3;
 
         /* Attempt a saving throw */
-        if ((mon->mflag2 & MFLAG2_QUESTOR) ||
+		if (mon_is_pet(mon))
+        {
+            note = " is already in your thrall!";
+        }
+        else if ((mon->mflag2 & MFLAG2_QUESTOR) ||
             !mon_is_demon(mon) ||
             (mon->mflag2 & MFLAG2_NOPET) ||
             (race->alloc.lvl > randint1((dam - 10) < 1 ? 1 : (dam - 10)) + 10))
