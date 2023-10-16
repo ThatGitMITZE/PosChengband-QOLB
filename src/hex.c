@@ -1193,6 +1193,11 @@ static void _vamp_blade_weapon_bonus(plr_tim_ptr timer, obj_ptr obj, plr_attack_
     add_flag(info->obj_flags, OF_BRAND_VAMP);
     add_flag(info->obj_known_flags, OF_BRAND_VAMP);
 }
+static void _vamp_blade_flags(plr_tim_ptr timer, u32b flgs[OF_ARRAY_SIZE])
+{
+    if (timer->flags & TF_INTERRUPTED) return;
+    add_flag(flgs, OF_BRAND_VAMP);
+}
 static status_display_t _vamp_blade_display(plr_tim_ptr timer)
 {
     return status_display_create("Vamp", "Vb", _color(timer, TERM_RED));
@@ -1204,6 +1209,7 @@ static plr_tim_info_ptr _vamp_blade(void)
     info->on_f = _vamp_blade_on;
     info->off_f = _vamp_blade_off;
     info->tick_f = _vamp_blade_tick;
+	info->flags_f = _vamp_blade_flags;
     info->calc_weapon_bonuses_f = _vamp_blade_weapon_bonus;
     info->status_display_f = _vamp_blade_display;
     return info;
