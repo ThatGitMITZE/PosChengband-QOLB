@@ -1402,6 +1402,7 @@ static cptr do_nature_spell(int spell, int mode)
             detect_stairs(rad);
             detect_recall(rad);
             detect_monsters_normal(rad);
+			detect_monsters_invis(rad);
         }
         break;
     case 11:
