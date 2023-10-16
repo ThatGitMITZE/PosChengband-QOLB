@@ -82,18 +82,20 @@ void home_display(doc_ptr doc, obj_p p, int flags)
     slot_t  slot;
     slot_t  max = inv_count_slots(inv, obj_exists);
 
-    inv_sort_aux(inv, _obj_cmp_score);
-    if (max > 50)
-    {
-        doc_printf(doc, "You have %d items in your home. Here are the top 50:\n", max);
-        max = 50;
-    }
-
+    inv_sort_aux(inv, obj_cmp);
+	/************************************************************************************
+     *if (max > 50)
+     *{
+     *    doc_printf(doc, "You have %d items in your home. Here are the top 50:\n", max);
+     *    max = 50;
+     *}
+	 ***********************************************************************************/
     for (slot = 1; slot <= max; slot++)
     {
         obj_ptr obj = inv_obj(inv, slot);
         if (!obj) continue; /* bug */
         object_desc(name, obj, OD_COLOR_CODED);
+		if (!obj->scratch) obj->scratch = obj_value(obj);
         doc_printf(doc, "<color:R>%6d</color> <indent><style:indent>", obj->scratch);
         if (equippy_chars)
         {
