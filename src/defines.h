@@ -13,7 +13,7 @@
 /*
  * Name of the version/variant
  */
-#define VERSION_NAME "PosChengband"
+#define VERSION_NAME "PosChengband-QOLB"
 
 
 /* Current Version */
